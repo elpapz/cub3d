@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:56:23 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/10 22:20:30 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/10 22:23:09 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_input(int ac, char **av)
 	int	i;
 
 	i = ft_strlen(av[1]);
-	if (!ft_strnstr(av[1], ".cub", i)) CARAAAALHO
+	if (!ft_strnstr(av[1], ".cub", i)) olaaa
 	{
 		ft_printf("Error:\nWrong map extension! Try to write '.cub' at the end");
 		exit (EXIT_SUCCESS);
