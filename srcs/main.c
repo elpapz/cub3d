@@ -1,0 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 05:40:55 by acanelas          #+#    #+#             */
+/*   Updated: 2023/10/11 08:19:11 by acanelas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "../cub3d.h"
+
+int	main (int ac, char **av)
+{
+	t_game game;
+
+	check_input(ac, av);
+	inicialize(&game);
+	if (!get_color_n_textures(&game, av[1]))
+		exit_error(&game, "Map params are someway wrong\n");
+}
