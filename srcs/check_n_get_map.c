@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:48:37 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/17 05:14:53 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:00:26 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	check_inner_map(t_game *game, char **map)
 	i = 0;
 	while (map[i])
 		i++;
-	temp = malloc(sizeof(char *) * i + 1);
+	temp = malloc(sizeof(char *) * (i + 1));
 	i = -1;
 	while (map[++i])
 		temp[i] = ft_strdup(map[i]);

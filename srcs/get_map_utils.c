@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:36:23 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/17 05:38:22 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:11:33 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ bool	is_out_wall_closed(char **map)
 	i = -1;
 	while (map[last])
 		last++;
-	printf("%d\n", last);
-	temp = malloc(sizeof(char *) * last + 1);
+	//printf("%d\n", last);
+	temp = malloc(sizeof(char *) * (last + 1));
 	while (map[++i])
 		temp[i] = ft_strtrim(map[i], " \t\n\v\f\r");
 	//printf("i = %d\n", i);
-	temp[i] = 0;
+	temp[i] = NULL;
 	//printf("temp[last -1] = %s\n", temp[last]);
 	if (!check_first_last_wall(temp[0]) || !check_first_last_wall(temp[last - 1]))
 		last = -1;
