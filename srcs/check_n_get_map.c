@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:48:37 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/15 06:42:35 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/17 05:14:53 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,16 @@ void	player_start_coord(t_game *game, char **map)
 			if (map[y][x] == 'N' || map[y][x] == 'S'
 			|| map[y][x] == 'E' || map[y][x] == 'W')
 			{
-				game->start_coord_y = y;
-				game->start_coord_x = x;
+				game->start_coord_y = y + 0.3;
+				game->start_coord_x = x + 0.3;
+				game->map[y][x] = '0';
+
 			}
 		}
 	}
+	//printf("player_dir = %c\n", game->play_start_dir);
+	//printf("player_dir = %f\n", game->start_coord_y);
+	//printf("player_dir = %f\n", game->start_coord_x);
 }
 
 void	check_inner_map(t_game *game, char **map)
@@ -70,9 +75,11 @@ void	check_inner_map(t_game *game, char **map)
 	i = -1;
 	while (map[++i])
 		temp[i] = ft_strdup(map[i]);
+	temp[i] = NULL;
 	player_start_coord(game, temp);
 	//printf("x coord= %d\n y coord= %d\n", game->start_coord_x, game->start_coord_y);
 	flood_fill(game, game->start_coord_x, game->start_coord_y, temp);
+	free_array(temp);
 	//print_array(temp);
 }
 
@@ -88,7 +95,7 @@ void	get_map(t_game *game, int fd)
 		if (!temp)
 			temp = ft_strdup(game->line);
 		else
-			temp = ft_strjoin(temp, game->line);
+			temp = ft_strjoin_free(temp, game->line);
 		free (game->line);
 		game->line = get_next_line(fd);
 	}

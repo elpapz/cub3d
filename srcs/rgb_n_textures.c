@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:31:34 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/15 06:35:05 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/17 05:36:14 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ bool	split_colors(char **colors, char *line, size_t i)
 	colors[word_count] = NULL;
 	if (word_count != 3)
 		return (false);
+	//colors[word_count] = NULL;
 	return (true);
 }
 

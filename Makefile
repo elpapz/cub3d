@@ -6,7 +6,7 @@
 #    By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 03:18:07 by acanelas          #+#    #+#              #
-#    Updated: 2023/10/15 06:50:12 by acanelas         ###   ########.fr        #
+#    Updated: 2023/10/17 04:06:31 by acanelas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,17 +31,15 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(MAKE) -C ./libft
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(CCMLX) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 clean:
 	$(MAKE) clean -C ./libft
 	$(RM) $(OBJS)
-	$(RM) $(OBJS_BONUS)
 
 fclean: clean
 	$(MAKE) fclean -C ./libft
 	$(RM) $(NAME)
-	$(RM) $(NAME_BONUS)
 
 re: fclean all
 

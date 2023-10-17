@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:22:00 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/15 06:30:54 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/16 06:21:07 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	free_array(char **split)
 	i = 0;
 	while (split[i])
 		free(split[i++]);
+	//free(split[i]);
 	free(split);
 }
 

@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/15 06:48:00 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/16 05:44:45 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "./libft/libft.h"
 //# include "../minilibx/mlx.h"
 # include <stdbool.h>
+# include <math.h>
 
 #define A 97
 #define S 115
@@ -27,8 +28,8 @@ typedef struct s_game
 	char	**map;
 	int		floor;
 	int		ceiling;
-	int		start_coord_x;
-	int		start_coord_y;
+	float		start_coord_x;
+	float		start_coord_y;
 	char	play_start_dir;
 	char	*north;
 	char	*south;
