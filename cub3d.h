@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/16 05:44:45 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/18 05:38:03 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define CUB3D_H
 
 # include "./libft/libft.h"
-//# include "../minilibx/mlx.h"
+# include "./minilibx/mlx.h"
 # include <stdbool.h>
 # include <math.h>
 
@@ -23,8 +23,29 @@
 #define D 100
 #define W 119
 
+# define NORTH_IMG "./assets/sprites/north_wall.xpm"
+# define SOUTH_IMG "./assets/sprites/south_wall.xpm"
+# define EAST_IMG "./assets/sprites/east_wall.xpm"
+# define WEST_IMG "./assets/sprites/west_wall.xpm"
+
+#define W_HEIGHT 200
+#define W_WIDTH 320
+#define TILE_SIZE 64
+
+typedef struct s_animation
+{
+	void	*noth_img;
+	void	*south_img;
+	void	*east_img;
+	void	*west_img;
+}			t_animation;
+
+
 typedef struct s_game
 {
+	t_animation	animation;
+	void	*mlx;
+	void	*mlx_window;
 	char	**map;
 	int		floor;
 	int		ceiling;
@@ -41,12 +62,12 @@ typedef struct s_game
 void	check_input(int ac, char **av);
 void	inicialize(t_game *game);
 bool	get_color_n_textures(t_game *game, char *file);
-int	exit_error(t_game *game, char *msg);
+int		exit_error(t_game *game, char *msg);
 void	free_array(char **split);
 void	is_valid_file(t_game *game, char *line);
 bool	is_all_numbers(char **colors);
 bool	line_empty(char *line);
-int	exit_error(t_game *game, char *error_text);
+int		exit_error(t_game *game, char *error_text);
 void	get_texture(t_game *game, char *line, char c);
 bool	split_colors(char **colors, char *line, size_t i);
 bool	convert_rgb(t_game *game, char **colors, char c);
@@ -55,7 +76,7 @@ bool	forbiden_or_empty(char *line);
 void	flood_fill(t_game *game, int x, int y, char **str);
 bool	is_out_wall_closed(char **map);
 bool	check_first_last_wall(char *str);
-int	check_num_players(t_game *game, char **map);
+int		check_num_players(t_game *game, char **map);
 bool	overall_parse_check(t_game *game, bool map);
 bool	check_line(t_game *game, char *line);
 bool	check_line_again(t_game *game, char *temp);
@@ -64,5 +85,7 @@ void	player_start_coord(t_game *game, char **map);
 void	check_inner_map(t_game *game, char **map);
 void	get_map(t_game *game, int fd);
 bool	get_color_n_textures(t_game *game, char *file);
+void	init_graphics(t_game *game);
+int		render_backgroung(t_game *game);
 
 #endif
