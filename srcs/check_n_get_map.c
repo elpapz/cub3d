@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:48:37 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/17 19:00:26 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/31 04:48:41 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	player_start_coord(t_game *game, char **map)
 			if (map[y][x] == 'N' || map[y][x] == 'S'
 			|| map[y][x] == 'E' || map[y][x] == 'W')
 			{
-				game->start_coord_y = y + 0.3;
-				game->start_coord_x = x + 0.3;
+				game->player.player_pos_y = y + 0.3;
+				game->player.player_pos_x = x + 0.3;
 				game->map[y][x] = '0';
 
 			}
@@ -78,7 +78,7 @@ void	check_inner_map(t_game *game, char **map)
 	temp[i] = NULL;
 	player_start_coord(game, temp);
 	//printf("x coord= %d\n y coord= %d\n", game->start_coord_x, game->start_coord_y);
-	flood_fill(game, game->start_coord_x, game->start_coord_y, temp);
+	flood_fill(game, game->player.player_pos_x, game->player.player_pos_y, temp);
 	free_array(temp);
 	//print_array(temp);
 }

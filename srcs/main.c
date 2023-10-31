@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:40:55 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/18 05:39:24 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/31 06:03:10 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,5 @@ int	main (int ac, char **av)
 	if (!get_color_n_textures(&game, av[1]))
 		exit_error(&game, "Map params are someway wrong\n");
 	init_graphics(&game);
-	//render_backgroung(&game);
 	free_n_exit(&game);
 }

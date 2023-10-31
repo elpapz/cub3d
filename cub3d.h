@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/18 05:38:03 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/31 06:20:55 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,29 @@ typedef struct s_animation
 }			t_animation;
 
 
+typedef struct s_player_view
+{
+	float		player_pos_x;
+	float		player_pos_y;
+	char		play_start_dir;
+	double		plane_x;
+	double		plane_y;
+	double		dir_x;
+	double		dir_y;
+	int			map_x;
+	int			map_y;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			step_x;
+	int			step_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		d_dist_x;
+	double		d_dist_y;
+	int			hit;
+	int			wall_side;
+}				t_player_view;
+
 typedef struct s_game
 {
 	t_animation	animation;
@@ -49,14 +72,13 @@ typedef struct s_game
 	char	**map;
 	int		floor;
 	int		ceiling;
-	float		start_coord_x;
-	float		start_coord_y;
-	char	play_start_dir;
 	char	*north;
 	char	*south;
 	char	*east;
 	char	*west;
 	char	*line;
+	int		pixel;
+	t_player_view	player;
 }			t_game;
 
 void	check_input(int ac, char **av);
@@ -87,5 +109,10 @@ void	get_map(t_game *game, int fd);
 bool	get_color_n_textures(t_game *game, char *file);
 void	init_graphics(t_game *game);
 int		render_backgroung(t_game *game);
+void	apply_dda(t_game *game);
+void	get_the_ray(t_game *game);
+void	get_step_sideD(t_game *game);
+void	map_pos(t_game *game);
+void	get_wall_height(t_game *game);
 
 #endif

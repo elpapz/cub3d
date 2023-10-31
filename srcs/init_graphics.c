@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 03:11:21 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/18 05:40:16 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/10/31 06:02:51 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	init_graphics(t_game *game)
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, W_WIDTH, W_HEIGHT, "cub3d");
 	init_xpm_img(game);
-	render_backgroung(game);
-	mlx_loop(game->mlx);
 	//printf("floor = %d\n", game->floor);
 	//printf("ceiling = %d\n", game->ceiling);
 }
