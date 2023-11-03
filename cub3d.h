@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/31 06:20:55 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/03 06:06:45 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 #define W_HEIGHT 200
 #define W_WIDTH 320
 #define TILE_SIZE 64
+#define PLANE 0.66
 
 typedef struct s_animation
 {
@@ -62,6 +63,10 @@ typedef struct s_player_view
 	double		d_dist_y;
 	int			hit;
 	int			wall_side;
+	int			start_draw;
+	int			end_draw;
+	double		wall_height;
+	double		perp_wall_dist;
 }				t_player_view;
 
 typedef struct s_game
@@ -72,6 +77,7 @@ typedef struct s_game
 	char	**map;
 	int		floor;
 	int		ceiling;
+	int		wall;
 	char	*north;
 	char	*south;
 	char	*east;
@@ -98,7 +104,7 @@ bool	forbiden_or_empty(char *line);
 void	flood_fill(t_game *game, int x, int y, char **str);
 bool	is_out_wall_closed(char **map);
 bool	check_first_last_wall(char *str);
-int		check_num_players(t_game *game, char **map);
+int		check_num_players(char **map);
 bool	overall_parse_check(t_game *game, bool map);
 bool	check_line(t_game *game, char *line);
 bool	check_line_again(t_game *game, char *temp);
@@ -113,6 +119,10 @@ void	apply_dda(t_game *game);
 void	get_the_ray(t_game *game);
 void	get_step_sideD(t_game *game);
 void	map_pos(t_game *game);
-void	get_wall_height(t_game *game);
+void	get_wall_height(t_player_view *player);
+void	get_player_direction(t_game *game, char c);
+void	draw_column(t_game *game);
+void	game_loop(t_game *game);
+void	get_player_direction(t_game *game, char c);
 
 #endif

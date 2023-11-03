@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:31:34 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/17 19:13:11 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/03 04:21:18 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ bool	convert_rgb(t_game *game, char **colors, char c)
 		game->floor = (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 	if (c == 'C' && game->ceiling == -1)
 		game->ceiling = (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+	game->wall = (0 << 24 | 0 << 16 | 0 << 8 | 0);
 	free (rgb);
 	return (true);
 }

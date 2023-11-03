@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:48:37 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/31 04:48:41 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/03 06:07:03 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	player_start_coord(t_game *game, char **map)
 				game->player.player_pos_y = y + 0.3;
 				game->player.player_pos_x = x + 0.3;
 				game->map[y][x] = '0';
-
+				game->player.play_start_dir = map[y][x];
+				get_player_direction(game, game->player.play_start_dir);
 			}
 		}
 	}
@@ -101,7 +102,7 @@ void	get_map(t_game *game, int fd)
 	}
 	game->map = ft_split(temp, '\n');
 	free (temp);
-	if (!is_out_wall_closed(game->map) || check_num_players(game, game->map) != 1)
+	if (!is_out_wall_closed(game->map) || check_num_players(game->map) != 1)
 		exit_error (game, "out walls not closed\n");
 	check_inner_map(game, game->map);
 }

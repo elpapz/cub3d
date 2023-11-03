@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:45:27 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/31 05:16:56 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/03 03:38:57 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,45 @@ void	inicialize(t_game *game)
 	game->west = NULL;
 	game->pixel = 0;
 	game->player.hit = 0;
+}
+
+void	get_player_direction2(t_game *game, char c)
+{
+	if (c == 'E')
+	{
+		game->player.dir_x = 1;
+		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		game->player.plane_y = PLANE;
+		return ;
+	}
+	else if (c == 'W')
+	{
+		game->player.dir_x = -1;
+		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		game->player.plane_y = PLANE;
+		return ;
+	}
+}
+
+void	get_player_direction(t_game *game, char c)
+{
+	if (c == 'N')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = -1;
+		game->player.plane_x = PLANE;
+		game->player.plane_y = 0;
+		return ;
+	}
+	else if (c == 'S')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = 1;
+		game->player.plane_x = -PLANE;
+		game->player.plane_y = 0;
+		return ;
+	}
+	get_player_direction2(game, c);
 }

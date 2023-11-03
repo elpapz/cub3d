@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:36:23 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/17 19:11:33 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/03 06:06:48 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ bool	check_first_last_wall(char *str)
 	return (true);
 }
 
-int	check_num_players(t_game *game, char **map)
+int	check_num_players(char **map)
 {
 	int	i;
 	int	count_players;
@@ -84,7 +84,6 @@ int	check_num_players(t_game *game, char **map)
 			|| map[i][j] == 'W' || map[i][j] == 'E')
 				{
 					count_players += 1;
-					game->play_start_dir = map[i][j];
 				}
 	}
 	return (count_players);

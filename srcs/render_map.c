@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 05:36:51 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/31 06:21:25 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/03 04:19:44 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	game_loop(t_game *game)
 		map_pos(game);
 		get_the_ray(game);
 		apply_dda(game);
-		get_wall_height(game);
-
-		
+		get_wall_height(&game->player);
+		draw_column(game);
 		game->pixel++;
 	}
+	game->pixel = 0;
 }
