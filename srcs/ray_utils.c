@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 06:07:13 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/06 20:32:09 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:54:10 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 void	get_wall_height(t_player_view *player)
 {
 	if (player->wall_side == 0)
-		player->perp_wall_dist = player->d_dist_x - player->side_dist_x;
+		player->perp_wall_dist = player->side_dist_x - player->d_dist_x;
 	else
-		player->perp_wall_dist = player->d_dist_y - player->side_dist_y;
-	if (player->perp_wall_dist)
+		player->perp_wall_dist = player->side_dist_y - player->d_dist_y;
+	//if (player->perp_wall_dist)
 		player->wall_height = (W_HEIGHT / player->perp_wall_dist);
-	else
-		player->wall_height = W_HEIGHT -1;
+	//else
+		//player->wall_height = W_HEIGHT -1;
 	printf("wall hight%f\n", player->wall_height);
 	printf("perp_dist %f\n", player->perp_wall_dist);
 	player->start_draw = (W_HEIGHT / 2) + (-player->wall_height / 2);
@@ -46,11 +46,10 @@ void	draw_column(t_game *game)
 	int	x;
 	int	y;
 	int	wall2 = (0 << 24 | 255 << 16 | 0 << 8 | 0);
-	//game->wall = (0 << 24 | 0 << 16 | 0 << 8 | 0);
 
-	y = game->player.end_draw;
+	y = game->player.start_draw;
 	x = game->pixel;
-	while (y < game->player.start_draw && y < W_HEIGHT)
+	while (y < game->player.end_draw && y < W_HEIGHT)
 	{
 		if (game->player.wall_side)
 			mlx_pixel_put(game->mlx, game->mlx_window, x, y, game->wall);
