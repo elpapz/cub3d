@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 05:53:18 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/06 05:06:41 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:12:26 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	get_the_ray(t_game *game)
 {
 	double	temp;
 
-	temp = 2 * (game->pixel) / ((double)W_WIDTH -1) -1;
+	temp = 2 * (game->pixel) / ((double)W_WIDTH -1) - 1;
 	game->player.ray_dir_x = game->player.dir_x + game->player.plane_x * temp;
 	game->player.ray_dir_y = game->player.dir_y + game->player.plane_y * temp;
 	printf("planex %f\n", game->player.plane_x);
@@ -70,14 +70,14 @@ void	get_the_ray(t_game *game)
 		game->player.d_dist_y = fabs(1 / game->player.ray_dir_y);
 	printf("delta_x %f\n", game->player.d_dist_x);
 	printf("delta_y %f\n", game->player.d_dist_y);
-	get_step_sideD(game);
+	//get_step_sideD(game);
 }
 
 void	apply_dda(t_game *game)
 {
 	while (game->player.hit == 0)
 	{
-		if (game->player.side_dist_x < game->player.side_dist_y)
+		if (game->player.side_dist_x <= game->player.side_dist_y)
 		{
 			game->player.side_dist_x += game->player.d_dist_x;
 			game->player.map_x += game->player.step_x;
