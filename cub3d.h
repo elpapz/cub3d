@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/03 06:06:45 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/06 01:21:29 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define EAST_IMG "./assets/sprites/east_wall.xpm"
 # define WEST_IMG "./assets/sprites/west_wall.xpm"
 
-#define W_HEIGHT 200
-#define W_WIDTH 320
+#define W_HEIGHT 226
+#define W_WIDTH 426
 #define TILE_SIZE 64
 #define PLANE 0.66
 
@@ -122,7 +122,7 @@ void	map_pos(t_game *game);
 void	get_wall_height(t_player_view *player);
 void	get_player_direction(t_game *game, char c);
 void	draw_column(t_game *game);
-void	game_loop(t_game *game);
+int		game_loop(t_game *game);
 void	get_player_direction(t_game *game, char c);
 
 #endif

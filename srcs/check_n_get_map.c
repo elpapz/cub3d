@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:48:37 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/03 06:07:03 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/06 02:51:08 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	player_start_coord(t_game *game, char **map)
 			if (map[y][x] == 'N' || map[y][x] == 'S'
 			|| map[y][x] == 'E' || map[y][x] == 'W')
 			{
-				game->player.player_pos_y = y + 0.3;
-				game->player.player_pos_x = x + 0.3;
+				game->player.player_pos_y = y + 0.5;
+				game->player.player_pos_x = x + 0.5;
 				game->map[y][x] = '0';
 				game->player.play_start_dir = map[y][x];
 				get_player_direction(game, game->player.play_start_dir);

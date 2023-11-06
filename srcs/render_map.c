@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 05:36:51 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/03 04:19:44 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/06 03:36:55 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	render_backgroung(t_game *game)
 	return (0);
 }
 
-void	game_loop(t_game *game)
+int	game_loop(t_game *game)
 {
 	render_backgroung(game);
 	while (game->pixel < W_WIDTH)
@@ -41,7 +41,9 @@ void	game_loop(t_game *game)
 		apply_dda(game);
 		get_wall_height(&game->player);
 		draw_column(game);
+		printf("pixel %i\n", game->pixel);
 		game->pixel++;
 	}
 	game->pixel = 0;
+	return (0);
 }
