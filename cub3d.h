@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 10:04:00 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:18:08 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define EAST_IMG "./sprites/east_wall.xpm"
 # define WEST_IMG "./sprites/west_wall.xpm"
 
-#define W_HEIGHT 226
-#define W_WIDTH 426
+#define W_HEIGHT 1080
+#define W_WIDTH 1920
 #define TILE_SIZE 64
 #define PLANE 0.66
 
@@ -83,7 +83,7 @@ typedef struct s_player_view
 
 typedef struct s_game
 {
-	t_animation	animation;
+	//t_animation	animation;
 	void		*mlx;
 	void		*mlx_window;
 	char		**map;
@@ -146,5 +146,6 @@ int		finish_game(t_game *game);
 double	rotate_vec(double x, double y, int flag);
 void	rotate_right(t_game *game);
 void	rotate_left(t_game *game);
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 
 #endif
