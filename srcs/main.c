@@ -6,11 +6,24 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:40:55 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 00:37:54 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/07 06:18:49 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cub3d.h"
+
+
+void	create_map_image(t_game *game)
+{
+	game->map_img.img = mlx_new_image(game->mlx, W_WIDTH, W_HEIGHT);
+	game->map_img.addr = mlx_get_data_addr(game->map_img.img, &game->map_img.bpp, 
+		&game->map_img.line_len, &game->map_img.endian);
+}
+
+void	texture_data(t_player_view *player)
+{
+	
+}
 
 int	finish_game(t_game *game)
 {
