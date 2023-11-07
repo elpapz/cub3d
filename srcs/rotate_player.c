@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 01:07:09 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 02:42:44 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/07 03:53:49 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	rotate_right(t_game *game)
 	double		old_plane_x;
 
 	old_dir_x = game->player.dir_x;
-	game->player.dir_x = game->player.dir_x * cos(-ROT) - game->player.dir_y * sin(-ROT);
-	game->player.dir_y = old_dir_x * sin(-ROT) + game->player.dir_y * cos(-ROT);
+	game->player.dir_x = game->player.dir_x * cos(ROT) - game->player.dir_y * sin(ROT);
+	game->player.dir_y = old_dir_x * sin(ROT) + game->player.dir_y * cos(ROT);
 	old_plane_x = game->player.plane_x;
-	game->player.plane_x = game->player.plane_x * cos(-ROT) - game->player.plane_y * sin(-ROT);
-	game->player.plane_y = old_plane_x * sin(-ROT) + game->player.plane_y * cos(-ROT);
+	game->player.plane_x = game->player.plane_x * cos(ROT) - game->player.plane_y * sin(ROT);
+	game->player.plane_y = old_plane_x * sin(ROT) + game->player.plane_y * cos(ROT);
 	game_loop(game);
 }
 
@@ -45,10 +45,10 @@ void	rotate_left(t_game *game)
 	double		old_plane_x;
 
 	old_dir_x = game->player.dir_x;
-	game->player.dir_x = game->player.dir_x * cos(ROT) - game->player.dir_y * sin(ROT);
-	game->player.dir_y = old_dir_x * sin(ROT) + game->player.dir_y * cos(ROT);
+	game->player.dir_x = game->player.dir_x * cos(-ROT) - game->player.dir_y * sin(-ROT);
+	game->player.dir_y = old_dir_x * sin(-ROT) + game->player.dir_y * cos(-ROT);
 	old_plane_x = game->player.plane_x;
-	game->player.plane_x = game->player.plane_x * cos(ROT) - game->player.plane_y * sin(ROT);
-	game->player.plane_y = old_plane_x * sin(ROT) + game->player.plane_y * cos(ROT);
+	game->player.plane_x = game->player.plane_x * cos(-ROT) - game->player.plane_y * sin(-ROT);
+	game->player.plane_y = old_plane_x * sin(-ROT) + game->player.plane_y * cos(-ROT);
 	game_loop(game);
 }
