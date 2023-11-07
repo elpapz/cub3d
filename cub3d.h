@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 02:46:01 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:04:00 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@
 
 typedef struct s_animation
 {
-	void	*noth_img;
-	void	*south_img;
-	void	*east_img;
-	void	*west_img;
+	int		line_len;
+	int		endian;
+	void	*img;
+	int		bpp;
+	char	*addr;
 }			t_animation;
 
 
@@ -76,23 +77,30 @@ typedef struct s_player_view
 	int			end_draw;
 	double		wall_height;
 	double		perp_wall_dist;
+	int			t_x;
+	int			t_y;
 }				t_player_view;
 
 typedef struct s_game
 {
 	t_animation	animation;
-	void	*mlx;
-	void	*mlx_window;
-	char	**map;
-	int		floor;
-	int		ceiling;
-	int		wall;
-	char	*north;
-	char	*south;
-	char	*east;
-	char	*west;
-	char	*line;
-	int		pixel;
+	void		*mlx;
+	void		*mlx_window;
+	char		**map;
+	int			floor;
+	int			ceiling;
+	int			wall;
+	char		*north;
+	char		*south;
+	char		*east;
+	char		*west;
+	char		*line;
+	int			pixel;
+	t_animation	map_img;
+	t_animation	noth_img;
+	t_animation	south_img;
+	t_animation	east_img;
+	t_animation	west_img;
 	t_player_view	player;
 }			t_game;
 
