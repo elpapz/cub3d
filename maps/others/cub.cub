@@ -1,0 +1,11 @@
+F 139,99,58
+C 171,154,137
+
+NO sprites/north_wall.xpm
+SO sprites/south_wall.xpm
+EA sprites/east_wall.xpm
+WE sprites/west_wall.xpm
+
+ 1
+1N1
+ 1

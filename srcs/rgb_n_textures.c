@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:31:34 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/06 20:29:49 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/07 03:33:38 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ bool	split_colors(char **colors, char *line, size_t i)
 			break ;
 		i++;
 	}
-	//printf("%d\n", word_count);
 	colors[word_count] = NULL;
 	if (word_count != 3)
 		return (false);
@@ -131,7 +130,7 @@ bool	forbiden_or_empty(char *line)
 		}
 	i++;
 	}
-	if (is_empty == true || is_valid_char == false)
+	if (is_valid_char == false)
 		return (false);
 	return (true);
 }

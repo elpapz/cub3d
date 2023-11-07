@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 06:07:13 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/06 20:54:10 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:56:56 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	draw_column(t_game *game)
 {
 	int	x;
 	int	y;
-	int	wall2 = (0 << 24 | 255 << 16 | 0 << 8 | 0);
+	int	wall2 = (18 << 24 | 18 << 16 | 18 << 8 | 0);
 
 	y = game->player.start_draw;
 	x = game->pixel;

@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/06 01:21:29 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/07 02:46:01 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,24 @@
 #define D 100
 #define W 119
 
-# define NORTH_IMG "./assets/sprites/north_wall.xpm"
-# define SOUTH_IMG "./assets/sprites/south_wall.xpm"
-# define EAST_IMG "./assets/sprites/east_wall.xpm"
-# define WEST_IMG "./assets/sprites/west_wall.xpm"
+#define ESC 65307
+#define RIGHT 65363
+#define LEFT 65361
+
+# define NORTH_IMG "./sprites/north_wall.xpm"
+# define SOUTH_IMG "./sprites/south_wall.xpm"
+# define EAST_IMG "./sprites/east_wall.xpm"
+# define WEST_IMG "./sprites/west_wall.xpm"
 
 #define W_HEIGHT 226
 #define W_WIDTH 426
 #define TILE_SIZE 64
 #define PLANE 0.66
+
+#define PI 3.14159265358979323846
+
+#define MOV 0.2
+#define ROT 0.1
 
 typedef struct s_animation
 {
@@ -124,5 +133,10 @@ void	get_player_direction(t_game *game, char c);
 void	draw_column(t_game *game);
 int		game_loop(t_game *game);
 void	get_player_direction(t_game *game, char c);
+int		move_player(int key, t_game *game);
+int		finish_game(t_game *game);
+double	rotate_vec(double x, double y, int flag);
+void	rotate_right(t_game *game);
+void	rotate_left(t_game *game);
 
 #endif
