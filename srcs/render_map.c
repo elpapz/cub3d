@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 05:36:51 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 12:02:10 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/08 23:51:59 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 
 void	create_map_image(t_game *game)
 {
-	if (game->map_img.img)
-		mlx_destroy_image(game->mlx, game->map_img.img);
+	//if (game->map_img.img)
+		//mlx_destroy_image(game->mlx, game->map_img.img);
 	game->map_img.img = mlx_new_image(game->mlx, W_WIDTH, W_HEIGHT);
 	game->map_img.addr = mlx_get_data_addr(game->map_img.img, &game->map_img.bpp,
 		&game->map_img.line_len, &game->map_img.endian);
@@ -41,10 +41,16 @@ int	render_backgroung(t_game *game)
 		x = -1;
 		if (y < W_HEIGHT / 2)
 			while (++x < W_WIDTH)
+			{
+				//mlx_pixel_put(game->mlx, game->mlx_window, x, y, game->ceiling);
 				my_mlx_pixel_put(game, x, y, game->ceiling);
+			}
 		else
 			while (++x < W_WIDTH)
+			{
+				//mlx_pixel_put(game->mlx, game->mlx_window, x, y, game->floor);
 				my_mlx_pixel_put(game, x, y, game->floor);
+			}
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:09:37 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 03:52:45 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/08 23:25:18 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,17 @@ int	move_player(int	key, t_game *game)
 {
 	if (key == ESC)
 		finish_game(game);
-	if (key == W)
+	else if (key == W)
 		move_up(game);
-	if (key == S)
+	else if (key == S)
 		move_down(game);
-	if (key == A)
+	else if (key == A)
 		move_left(game);
-	if (key == D)
+	else if (key == D)
 		move_right(game);
-	if (key == RIGHT)
+	else if (key == RIGHT)
 		rotate_right(game);
-	if (key == LEFT)
+	else if (key == LEFT)
 		rotate_left(game);
 	return (0);
 }

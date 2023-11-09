@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:40:55 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 10:41:27 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/08 23:45:59 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int	main (int ac, char **av)
 	init_graphics(&game);
 	game_loop(&game);
 	mlx_hook(game.mlx_window, 2, 1L << 0, move_player, &game);
-	mlx_hook(game.mlx_window, 17, 1L << 17, finish_game, &game);
+	//mlx_key_hook(game.mlx_window, move_player, &game);
+	//mlx_loop_hook(game.mlx, move_player, &game);
+	mlx_hook(game.mlx_window, 17, 1L << 0, finish_game, &game);
 	mlx_loop(game.mlx);
 	free_n_exit(&game);
 }

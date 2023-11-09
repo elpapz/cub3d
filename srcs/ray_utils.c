@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 06:07:13 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 12:32:04 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/08 23:52:45 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	draw_column(t_game *game)
 	printf("a tua mae\n");
 	while (y < game->player.end_draw)
 	{
-		if (game->player.wall_side)
+		//if (game->player.wall_side)
 			my_mlx_pixel_put(game, x, y, game->wall);
-		else
-			my_mlx_pixel_put(game, x, y, game->wall);
+		//else
+			//my_mlx_pixel_put(game, x, y, game->wall);
 	y++;
 		//printf("fodasse\n");
 	}
