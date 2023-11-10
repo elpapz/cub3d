@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 06:07:13 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/08 23:52:45 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/10 05:43:23 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+int	get_pixel(t_animation img, int x, int y)
+{
+	return (*(unsigned int*)((img.addr + (y * img.line_len) + (x * (img.bpp / 8)))));
+}
 
 void	get_wall_height(t_player_view *player)
 {
@@ -23,17 +27,17 @@ void	get_wall_height(t_player_view *player)
 	player->wall_height = (W_HEIGHT / player->perp_wall_dist);
 	//else
 		//player->wall_height = W_HEIGHT -1;
-	printf("wall hight%f\n", player->wall_height);
-	printf("perp_dist %f\n", player->perp_wall_dist);
+	//printf("wall hight%f\n", player->wall_height);
+	//printf("perp_dist %f\n", player->perp_wall_dist);
 	player->start_draw = (W_HEIGHT / 2) + (-player->wall_height / 2);
 	if (player->start_draw < 0)
 		player->start_draw = 0;
 	//printf("start %d\n", player->start_draw);
-	printf("start %d\n", player->start_draw);
+	//printf("start %d\n", player->start_draw);
 	player->end_draw = (W_HEIGHT / 2) + (player->wall_height / 2);
 	if (player->end_draw >= W_HEIGHT)
 		player->end_draw = W_HEIGHT -1;
-	printf("a tua mae\n");
+	//printf("a tua mae\n");
 	//printf("end %d\n", player->end_draw);
 	//printf("a tua mae");
 	//printf("side_x %f\n", player->side_dist_x);
@@ -43,24 +47,43 @@ void	get_wall_height(t_player_view *player)
 	//printf("%f\n", player->plane_y);
 }
 
+double	tex_pos(t_game *game, double y)
+{
+	double	pos;
+
+	pos = (game->player.start_draw - (W_HEIGHT / 2) + (game->player.wall_height / 2)) * y;
+	return (pos);
+}
+
+double	tex_step_y(t_game *game)
+{
+	double y;
+
+	y = fabs((double)(TILE_SIZE / game->player.wall_height));
+	return (y);
+}
+
 void	draw_column(t_game *game)
 {
 	int	x;
 	int	y;
-	//int	wall2 = (18 << 24 | 18 << 16 | 18 << 8 | 0);
-	//printf("a tua mae");
+	double	step;
+	double pos;
+
+	step = tex_step_y(game);
+	pos = tex_pos(game, step);
 	y = game->player.start_draw;
 	x = game->pixel;
-	printf("a tua mae\n");
+	//printf("a tua mae\n");
+	printf("pos %f\nstep %f\n", pos, step);
 	while (y < game->player.end_draw)
 	{
-		//if (game->player.wall_side)
-			my_mlx_pixel_put(game, x, y, game->wall);
-		//else
-			//my_mlx_pixel_put(game, x, y, game->wall);
-	y++;
-		//printf("fodasse\n");
+		game->player.t_y = (int)pos & (TILE_SIZE -1);
+		//printf("text_x %i\ntext_y %i\n", game->player.t_x, game->player.t_y);
+		pos = pos + step;
+		game->color = get_pixel(game->sprite_img, game->player.t_x, game->player.t_y);
+		my_mlx_pixel_put(game, x, y, game->color);
+		y++;
 	}
-	printf("a tua tia");
 	game->player.hit = 0;
 }

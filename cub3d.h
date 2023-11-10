@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 12:18:08 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/10 04:11:30 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define EAST_IMG "./sprites/east_wall.xpm"
 # define WEST_IMG "./sprites/west_wall.xpm"
 
-#define W_HEIGHT 1080
-#define W_WIDTH 1920
+#define W_HEIGHT 200
+#define W_WIDTH 320
 #define TILE_SIZE 64
 #define PLANE 0.66
 
@@ -96,11 +96,13 @@ typedef struct s_game
 	char		*west;
 	char		*line;
 	int			pixel;
+	int			color;
 	t_animation	map_img;
 	t_animation	noth_img;
 	t_animation	south_img;
 	t_animation	east_img;
 	t_animation	west_img;
+	t_animation	sprite_img;
 	t_player_view	player;
 }			t_game;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 05:36:51 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/08 23:51:59 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/10 05:55:39 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,68 @@ int	render_backgroung(t_game *game)
 	return (0);
 }
 
+double	get_wall_side(t_player_view *player)
+{
+	double	wall;
+
+	if (!player->wall_side)
+	{
+		if (player->player_pos_x < player->map_x)
+			wall = player->player_pos_y + player->perp_wall_dist * player->ray_dir_y;
+		else
+			wall = player->player_pos_y - player->perp_wall_dist * player->ray_dir_y;
+	}
+	else
+	{
+		if (player->player_pos_y > player->map_y)
+			wall = player->player_pos_x - player->perp_wall_dist * player->ray_dir_x;
+		else
+			wall = player->player_pos_x + player->perp_wall_dist * player->ray_dir_x;
+	}
+	wall -= floor(wall);
+	return (wall);
+}
+
+int	final_x_text(t_player_view *player)
+{
+	int texture;
+
+	if (player->wall_side && player->player_pos_y < player->map_y)
+		texture = TILE_SIZE - player->t_x - 1;
+	if (!player->wall_side && player->player_pos_x > player->map_x)
+		texture = TILE_SIZE - player->t_x - 1;
+	return (texture);
+}
+
+void	get_x_text(t_player_view *player)
+{
+	double	wall;
+
+	wall = get_wall_side(player);
+	player->t_x = (int)(wall * (double)TILE_SIZE);
+	player->t_x = final_x_text(player);
+}
+
+void	save_sprite(t_game *game)
+{
+
+	if (!game->player.wall_side)
+	{
+		if (game->player.player_pos_x < game->player.map_x)
+			game->sprite_img = game->east_img;
+		else
+			game->sprite_img = game->west_img;
+	}
+	else
+	{
+		if (game->player.player_pos_y > game->player.map_y)
+			game->sprite_img = game->noth_img;
+		else
+			game->sprite_img = game->south_img;
+	}
+	get_x_text(&game->player);
+}
+
 int	game_loop(t_game *game)
 {
 	create_map_image(game);
@@ -66,6 +128,7 @@ int	game_loop(t_game *game)
 		get_step_sideD(game);
 		apply_dda(game);
 		get_wall_height(&game->player);
+		save_sprite(game);
 		draw_column(game);
 		printf("pixel %i\n", game->pixel);
 		game->pixel++;
