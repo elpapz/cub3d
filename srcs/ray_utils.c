@@ -6,15 +6,15 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 06:07:13 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/10 05:43:23 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/10 06:38:31 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	get_pixel(t_animation img, int x, int y)
+int	get_pixel(t_animation *img, int x, int y)
 {
-	return (*(unsigned int*)((img.addr + (y * img.line_len) + (x * (img.bpp / 8)))));
+	return (*(unsigned int*)((img->addr + (y * img->line_len) + (x * (img->bpp / 8)))));
 }
 
 void	get_wall_height(t_player_view *player)
@@ -51,7 +51,7 @@ double	tex_pos(t_game *game, double y)
 {
 	double	pos;
 
-	pos = (game->player.start_draw - (W_HEIGHT / 2) + (game->player.wall_height / 2)) * y;
+	pos = (game->player.start_draw - W_HEIGHT / 2 + game->player.wall_height / 2) * y;
 	return (pos);
 }
 
@@ -59,7 +59,7 @@ double	tex_step_y(t_game *game)
 {
 	double y;
 
-	y = fabs((double)(TILE_SIZE / game->player.wall_height));
+	y = 1 * TILE_SIZE / game->player.wall_height; //fabs((double)(TILE_SIZE / game->player.wall_height));
 	return (y);
 }
 
@@ -81,7 +81,7 @@ void	draw_column(t_game *game)
 		game->player.t_y = (int)pos & (TILE_SIZE -1);
 		//printf("text_x %i\ntext_y %i\n", game->player.t_x, game->player.t_y);
 		pos = pos + step;
-		game->color = get_pixel(game->sprite_img, game->player.t_x, game->player.t_y);
+		game->color = get_pixel(&game->sprite_img, game->player.t_x, game->player.t_y);
 		my_mlx_pixel_put(game, x, y, game->color);
 		y++;
 	}
