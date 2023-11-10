@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 05:36:51 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/10 06:35:46 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/10 07:04:27 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 
 void	create_map_image(t_game *game)
 {
-	//if (game->map_img.img)
-		//mlx_destroy_image(game->mlx, game->map_img.img);
+	if (game->map_img.img)
+		mlx_destroy_image(game->mlx, game->map_img.img);
 	game->map_img.img = mlx_new_image(game->mlx, W_WIDTH, W_HEIGHT);
 	game->map_img.addr = mlx_get_data_addr(game->map_img.img, &game->map_img.bpp,
 		&game->map_img.line_len, &game->map_img.endian);
@@ -75,9 +75,9 @@ int	final_x_text(t_player_view *player)
 {
 	int texture;
 
-	if (player->wall_side && player->ray_dir_x > 0)
+	if (player->wall_side) //&& player->ray_dir_x > 0)
 		texture = TILE_SIZE - player->t_x - 1;
-	if (!player->wall_side && player->ray_dir_y < 0)
+	if (!player->wall_side) //&& player->ray_dir_y < 0)
 		texture = TILE_SIZE - player->t_x - 1;
 	return (texture);
 }
@@ -127,7 +127,7 @@ int	game_loop(t_game *game)
 		printf("pixel %i\n", game->pixel);
 		game->pixel++;
 	}
-	mlx_clear_window(game->mlx, game->mlx_window);
+	//mlx_clear_window(game->mlx, game->mlx_window);
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->map_img.img, 0, 0);
 	game->pixel = 0;
 	return (0);

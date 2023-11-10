@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/10 04:11:30 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/10 07:08:21 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define EAST_IMG "./sprites/east_wall.xpm"
 # define WEST_IMG "./sprites/west_wall.xpm"
 
-#define W_HEIGHT 200
-#define W_WIDTH 320
+#define W_HEIGHT 266
+#define W_WIDTH 426
 #define TILE_SIZE 64
 #define PLANE 0.66
 

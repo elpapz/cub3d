@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 06:07:13 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/10 06:38:31 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/10 07:02:56 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ double	tex_step_y(t_game *game)
 {
 	double y;
 
-	y = 1 * TILE_SIZE / game->player.wall_height; //fabs((double)(TILE_SIZE / game->player.wall_height));
+	y = 1.0 * TILE_SIZE / game->player.wall_height; //fabs((double)(TILE_SIZE / game->player.wall_height));
 	return (y);
 }
 
@@ -78,9 +78,9 @@ void	draw_column(t_game *game)
 	printf("pos %f\nstep %f\n", pos, step);
 	while (y < game->player.end_draw)
 	{
-		game->player.t_y = (int)pos & (TILE_SIZE -1);
+		game->player.t_y = abs((int)pos); //(int)pos & (TILE_SIZE - 1);
 		//printf("text_x %i\ntext_y %i\n", game->player.t_x, game->player.t_y);
-		pos = pos + step;
+		pos += step;
 		game->color = get_pixel(&game->sprite_img, game->player.t_x, game->player.t_y);
 		my_mlx_pixel_put(game, x, y, game->color);
 		y++;
