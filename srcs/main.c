@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:40:55 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/11 05:06:02 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/11 06:40:16 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	finish_game(t_game *game)
 	free (game->mlx);
 	free_n_exit(game);
 	ft_putendl_fd("Hope to see you back soon :)", STDOUT_FILENO);
-	exit (0);
+	exit(0);
 }
 
 
