@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 06:07:13 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/10 07:02:56 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:43:15 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,13 @@ void	draw_column(t_game *game)
 	pos = tex_pos(game, step);
 	y = game->player.start_draw;
 	x = game->pixel;
-	//printf("a tua mae\n");
-	printf("pos %f\nstep %f\n", pos, step);
+	printf("tex_x %i\n", game->player.t_x);
+	//printf("pos %f\nstep %f\n", pos, step);
 	while (y < game->player.end_draw)
 	{
-		game->player.t_y = abs((int)pos); //(int)pos & (TILE_SIZE - 1);
+		game->player.t_y = (int)pos & (TILE_SIZE - 1);
+		//printf("text_y %i\n", game->player.t_y);
+		//printf("text_x %i\ntext_y %i\n", game->player.t_x, game->player.t_y);
 		//printf("text_x %i\ntext_y %i\n", game->player.t_x, game->player.t_y);
 		pos += step;
 		game->color = get_pixel(&game->sprite_img, game->player.t_x, game->player.t_y);

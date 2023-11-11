@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:48:37 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/06 02:51:08 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/11 00:26:38 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ void	free_n_exit(t_game *game)
 		free (game->line);
 	if (game->map)
 		free_array(game->map);
+	//printf("NO TEU CU");
+	//destroy_img(game);
+	//if(&game->sprite_img)
+		//mlx_destroy_image(game->mlx, &game->sprite_img);
+	//if (game->mlx_window)
+		//mlx_destroy_window(game->mlx, game->mlx_window);
+	//if (game->mlx)
+		//free (game->mlx);
 }
 /*
 void	print_array(char **str)

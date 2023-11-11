@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 05:36:51 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/10 07:04:27 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/11 00:23:13 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ double	get_wall_side(t_player_view *player)
 {
 	double	wall;
 
-	if (player->wall_side)
+	if (!player->wall_side)
 	{
 			wall = player->player_pos_y + player->perp_wall_dist * player->ray_dir_y;
 	}
@@ -75,10 +75,12 @@ int	final_x_text(t_player_view *player)
 {
 	int texture;
 
-	if (player->wall_side) //&& player->ray_dir_x > 0)
-		texture = TILE_SIZE - player->t_x - 1;
-	if (!player->wall_side) //&& player->ray_dir_y < 0)
-		texture = TILE_SIZE - player->t_x - 1;
+	if (!player->wall_side && player->ray_dir_y < 0)
+		texture = player->t_x - TILE_SIZE - 1;
+	if (player->wall_side && player->ray_dir_x > 0)
+		texture = player->t_x - TILE_SIZE - 1;
+	else
+		texture = player->t_x;
 	return (texture);
 }
 
@@ -88,7 +90,11 @@ void	get_x_text(t_player_view *player)
 
 	wall = get_wall_side(player);
 	player->t_x = (int)(wall * (double)(TILE_SIZE));
-	player->t_x = final_x_text(player);
+	if (!player->wall_side && player->ray_dir_x < 0)
+		player->t_x = TILE_SIZE - player->t_x;
+	else if (player->wall_side && player->ray_dir_y > 0)
+		player->t_x = TILE_SIZE - player->t_x;
+	//player->t_x = final_x_text(player);
 }
 
 void	save_sprite(t_game *game)
@@ -129,6 +135,7 @@ int	game_loop(t_game *game)
 	}
 	//mlx_clear_window(game->mlx, game->mlx_window);
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->map_img.img, 0, 0);
+
 	game->pixel = 0;
 	return (0);
 }
