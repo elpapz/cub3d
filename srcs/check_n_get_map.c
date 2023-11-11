@@ -6,37 +6,12 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:48:37 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/11 00:26:38 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/11 05:48:30 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cub3d.h"
 
-void	free_n_exit(t_game *game)
-{
-	if (!game)
-		return ;
-	if (game->north)
-		free (game->north);
-	if (game->south)
-		free (game->south);
-	if (game->east)
-		free (game->east);
-	if (game->west)
-		free (game->west);
-	if (game->line)
-		free (game->line);
-	if (game->map)
-		free_array(game->map);
-	//printf("NO TEU CU");
-	//destroy_img(game);
-	//if(&game->sprite_img)
-		//mlx_destroy_image(game->mlx, &game->sprite_img);
-	//if (game->mlx_window)
-		//mlx_destroy_window(game->mlx, game->mlx_window);
-	//if (game->mlx)
-		//free (game->mlx);
-}
 /*
 void	print_array(char **str)
 {
@@ -100,7 +75,7 @@ void	get_map(t_game *game, int fd)
 	while (game->line != NULL)
 	{
 		if (forbiden_or_empty(game->line) == false)
-			exit_error(game, "your map is wrong!\n");
+			exit_game(game, "Your map is wrong!\n");
 		if (!temp)
 			temp = ft_strdup(game->line);
 		else
@@ -111,7 +86,7 @@ void	get_map(t_game *game, int fd)
 	game->map = ft_split(temp, '\n');
 	free (temp);
 	if (!is_out_wall_closed(game->map) || check_num_players(game->map) != 1)
-		exit_error (game, "out walls not closed\n");
+		exit_game (game, "Out walls not closed\n");
 	check_inner_map(game, game->map);
 }
 
@@ -127,7 +102,7 @@ bool	get_color_n_textures(t_game *game, char *file)
 	game->line = get_next_line(fd);
 	while (game->line)
 	{
-		if (!check_line(game, game->line))
+		if (!check_line(game))
 			map = true;
 		if (map == true)
 			break ;

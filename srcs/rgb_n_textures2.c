@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:39:04 by acanelas          #+#    #+#             */
-/*   Updated: 2023/10/15 06:40:12 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/11 05:47:50 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ bool	check_line_again(t_game *game, char *temp)
 	else if (temp[0] != '\0')
 	{
 		free (temp);
-		exit_error(game, "invalid map file\n");
+		exit_game(game, "invalid map file\n");
 	}
 	return (true);
 }
 
-bool	check_line(t_game *game, char *line)
+bool	check_line(t_game *game)
 {
 	char *temp;
 
-	temp = ft_strtrim(line, " \t\n\v\f\r");
+	temp = ft_strtrim(game->line, " \t\n\v\f\r");
 	if (ft_strncmp(temp, "NO", 2) == 0)
 		get_texture(game, temp, 'N');
 	else if (ft_strncmp(temp, "SO", 2) == 0)
@@ -59,4 +59,3 @@ bool	overall_parse_check(t_game *game, bool map)
 	else
 		return (false);
 }
-

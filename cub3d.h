@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/10 07:08:21 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/11 05:48:24 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ typedef struct s_player_view
 
 typedef struct s_game
 {
-	//t_animation	animation;
 	void		*mlx;
 	void		*mlx_window;
 	char		**map;
@@ -109,9 +108,9 @@ typedef struct s_game
 void	check_input(int ac, char **av);
 void	inicialize(t_game *game);
 bool	get_color_n_textures(t_game *game, char *file);
-int		exit_error(t_game *game, char *msg);
+int		exit_game(t_game *game, char *msg);
 void	free_array(char **split);
-void	is_valid_file(t_game *game, char *line);
+bool	is_valid_file(char *line);
 bool	is_all_numbers(char **colors);
 bool	line_empty(char *line);
 int		exit_error(t_game *game, char *error_text);
@@ -125,7 +124,7 @@ bool	is_out_wall_closed(char **map);
 bool	check_first_last_wall(char *str);
 int		check_num_players(char **map);
 bool	overall_parse_check(t_game *game, bool map);
-bool	check_line(t_game *game, char *line);
+bool	check_line(t_game *game);
 bool	check_line_again(t_game *game, char *temp);
 void	free_n_exit(t_game *game);
 void	player_start_coord(t_game *game, char **map);
@@ -149,5 +148,6 @@ double	rotate_vec(double x, double y, int flag);
 void	rotate_right(t_game *game);
 void	rotate_left(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+void	destroy_img(t_game *game);
 
 #endif

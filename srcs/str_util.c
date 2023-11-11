@@ -6,36 +6,36 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:22:00 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/10 23:51:03 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/11 05:46:35 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cub3d.h"
 
-void	free_array(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split[i])
-		free(split[i++]);
-	//free(split[i]);
-	free(split);
-}
-
-void	is_valid_file(t_game *game, char *line)
+bool	is_valid_file(char *line)
 {
 	int	i;
 
 	i = ft_strlen(line);
 	if (!ft_strnstr(line, ".xpm", i))
-		exit_error(game, "it should be a file ending with .xpm\n");
+	{
+		//free (line);
+		//exit_game(game, "it should be a file ending with .xpm\n");
+		return (false);
+	}
 	int fd;
 
 	fd = open(line, O_RDONLY);
 	if (fd < 0)
-		exit_error(game, "error opening XPM\n");
+	{
+		//printf("fuck");
+		close (fd);
+		return (false);
+		//free (line);
+		//exit_game(game, "error opening XPM\n");
+	}
 	close(fd);
+	return (true);
 }
 
 bool	is_all_numbers(char **colors)
@@ -71,12 +71,4 @@ bool	line_empty(char *line)
 			is_empty = false;
 
 	return (true);
-}
-
-int	exit_error(t_game *game, char *error_text)
-{
-	free_n_exit(game);
-	ft_putendl_fd("Ops, the game crashed", STDERR_FILENO);
-	ft_putstr_fd(error_text, STDERR_FILENO);
-	exit (EXIT_FAILURE);
 }

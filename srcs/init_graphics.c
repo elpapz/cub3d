@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 03:11:21 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 04:55:39 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/11 03:46:42 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	check_img(t_game *game)
 {
 	if (!game->noth_img.img || !game->east_img.img
 	|| !game->west_img.img || !game->south_img.img)
-		exit_error(game, "convert xmp to img just failed\n");
+	{
+		destroy_img(game);
+		exit_game(game, "convert xmp to img just failed\n");
+	}
 }
 
 void	init_addr(t_game *game)

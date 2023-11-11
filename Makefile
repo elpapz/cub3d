@@ -6,7 +6,7 @@
 #    By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 03:18:07 by acanelas          #+#    #+#              #
-#    Updated: 2023/11/07 02:31:03 by acanelas         ###   ########.fr        #
+#    Updated: 2023/11/11 03:42:05 by acanelas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS =	srcs/check_input.c \
 		srcs/ray_utils.c \
 		srcs/move_player.c \
 		srcs/rotate_player.c \
+		srcs/free_destroy.c \
 		srcs/main.c \
 
 NAME = cub3d

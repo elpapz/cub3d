@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:31:34 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/07 03:33:38 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/11 06:06:20 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@ void	get_texture(t_game *game, char *line, char c)
 	i = 2;
 	while (line[i] == ' ' || (line [i] >= 9 && line[i] <= 13))
 		i++;
-	is_valid_file(game, line + i);
+	if (!is_valid_file(line + i))
+	{
+		//free (line);
+		free(line);
+		exit_game(game, "Please check your XPM file\n");
+	}
 	if (c == 'N' && !game->north)
 		game->north = ft_strdup(line + i);
 	else if (c == 'S' && !game->south)
@@ -31,7 +36,7 @@ void	get_texture(t_game *game, char *line, char c)
 	else
 	{
 		free (line);
-		exit_error(game, "error in get texture\n");
+		exit_game(game, "error in get texture\n");
 	}
 }
 
@@ -78,7 +83,6 @@ bool	convert_rgb(t_game *game, char **colors, char c)
 		game->floor = (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 	if (c == 'C' && game->ceiling == -1)
 		game->ceiling = (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
-	game->wall = (0 << 24 | 0 << 16 | 0 << 8 | 0);
 	free (rgb);
 	return (true);
 }
@@ -88,7 +92,7 @@ void	get_rgb(t_game *game, char *line, char c)
 	if (game->north == NULL || game->east == NULL || game->west == NULL || game->south == NULL)
 	{
 		free (line);
-		exit_error(game, "Map elements are in the wrong order\n");
+		exit_game(game, "Map elements are in the wrong order\n");
 	}
 	size_t	i;
 	char **colors;
@@ -102,7 +106,7 @@ void	get_rgb(t_game *game, char *line, char c)
 	{
 		free_array (colors);
 		free (line);
-		exit_error(game, "The RGB color code is wrong!\n");
+		exit_game(game, "The RGB color code is wrong!\n");
 	}
 	free_array(colors);
 }

@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:36:23 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/03 06:06:48 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/11 03:36:39 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	flood_fill(t_game *game, int x, int y, char **str)
 	if (str[y][x] == ' ' || (str[y][x] >= 9 && str[y][x] <= 13))
 	{
 		free_array (str);
-		exit_error(game, "flood fill error\n");
+		exit_game(game, "The inside of map is not closed\n");
 	}
 	if (str[y][x] == '1')
 		return ;
