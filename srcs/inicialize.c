@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:45:27 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/03 03:38:57 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/13 21:14:36 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	inicialize(t_game *game)
 	game->west = NULL;
 	game->pixel = 0;
 	game->player.hit = 0;
+	game->is_valid = 0;
 }
 
 void	get_player_direction2(t_game *game, char c)

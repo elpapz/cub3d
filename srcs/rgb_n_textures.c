@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:31:34 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/11 06:06:20 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 04:31:18 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ void	get_texture(t_game *game, char *line, char c)
 		i++;
 	if (!is_valid_file(line + i))
 	{
+		//printf("fuck\n");
+		game->is_valid = 1;
+		return ;
 		//free (line);
-		free(line);
-		exit_game(game, "Please check your XPM file\n");
+		//free(line);
+		//exit_game(game, "Please check your XPM file\n");
 	}
 	if (c == 'N' && !game->north)
 		game->north = ft_strdup(line + i);
@@ -35,8 +38,20 @@ void	get_texture(t_game *game, char *line, char c)
 		game->west = ft_strdup(line + i);
 	else
 	{
-		free (line);
-		exit_game(game, "error in get texture\n");
+		//printf("fuck");
+		game->is_valid = 1;
+		//free (line);
+		//exit_game(game, "error in get texture\n");
+	}
+}
+
+void	print_array(char **map)
+{
+	int i = 0;
+	while(map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
 	}
 }
 
@@ -49,6 +64,8 @@ bool	split_colors(char **colors, char *line, size_t i)
 	while (i < ft_strlen(line))
 	{
 		start = i;
+		while (line[start] == ' ' || (line[start] >= 9 && line[start] <= 13))
+			start++;
 		while (line[i] != ',' && line[i] != '\0')
 			i++;
 		if (line[i] == ',' || line[i] == '\0')
@@ -59,7 +76,11 @@ bool	split_colors(char **colors, char *line, size_t i)
 	}
 	colors[word_count] = NULL;
 	if (word_count != 3)
+	{
+		printf("fuck split\n");
 		return (false);
+	}
+	print_array(colors);
 	return (true);
 }
 
@@ -76,6 +97,8 @@ bool	convert_rgb(t_game *game, char **colors, char c)
 	while (++i < 3)
 		if (rgb[i] < 0 || rgb[i] > 255)
 		{
+			printf("fuck\n");
+			//game->is_valid = 4;
 			free (rgb);
 			return (false);
 		}
@@ -89,11 +112,11 @@ bool	convert_rgb(t_game *game, char **colors, char c)
 
 void	get_rgb(t_game *game, char *line, char c)
 {
-	if (game->north == NULL || game->east == NULL || game->west == NULL || game->south == NULL)
-	{
-		free (line);
-		exit_game(game, "Map elements are in the wrong order\n");
-	}
+	//if (game->north == NULL || game->east == NULL || game->west == NULL || game->south == NULL)
+	//{
+		//free (line);
+		//exit_game(game, "Map elements are in the wrong order\n");
+	//}
 	size_t	i;
 	char **colors;
 
@@ -105,33 +128,28 @@ void	get_rgb(t_game *game, char *line, char c)
 	if (!split_colors(colors, line, i) || !is_all_numbers(colors) || !convert_rgb(game, colors, c))
 	{
 		free_array (colors);
-		free (line);
-		exit_game(game, "The RGB color code is wrong!\n");
+		//free (line);
+		game->is_valid = 3;
+		//exit_game(game, "The RGB color code is wrong!\n");
 	}
-	free_array(colors);
+	else
+		free_array(colors);
 }
 
 bool	forbiden_or_empty(char *line)
 {
 	int	i;
-	bool	is_empty;
+	//bool	is_empty;
 	bool	is_valid_char;
 
 	i = 0;
-	is_empty = true;
+	//is_empty = true;
 	is_valid_char = true;
-	while (line[i] && is_empty == true)
-		if (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
-			i++;
-		else
-			is_empty = false;
-	i = 0;
-	while (line[i] && is_empty == false && is_valid_char == true)
+	while (line[i] && is_valid_char == true)
 	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W' && line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-		{
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
+		&& line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
 			is_valid_char = false;
-		}
 	i++;
 	}
 	if (is_valid_char == false)

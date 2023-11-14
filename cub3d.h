@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/11 05:48:24 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 04:15:47 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*mlx_window;
 	char		**map;
+	int		is_valid;
 	int			floor;
 	int			ceiling;
 	int			wall;
@@ -123,7 +124,7 @@ void	flood_fill(t_game *game, int x, int y, char **str);
 bool	is_out_wall_closed(char **map);
 bool	check_first_last_wall(char *str);
 int		check_num_players(char **map);
-bool	overall_parse_check(t_game *game, bool map);
+bool	overall_parse_check(t_game *game);
 bool	check_line(t_game *game);
 bool	check_line_again(t_game *game, char *temp);
 void	free_n_exit(t_game *game);
@@ -149,5 +150,5 @@ void	rotate_right(t_game *game);
 void	rotate_left(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	destroy_img(t_game *game);
-
+void	print_array(char **map);
 #endif

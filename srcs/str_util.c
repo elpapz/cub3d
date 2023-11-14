@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:22:00 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/11 05:46:35 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 04:17:20 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ bool	is_valid_file(char *line)
 	i = ft_strlen(line);
 	if (!ft_strnstr(line, ".xpm", i))
 	{
+		//printf("fuck");
 		//free (line);
 		//exit_game(game, "it should be a file ending with .xpm\n");
 		return (false);
@@ -49,11 +50,17 @@ bool	is_all_numbers(char **colors)
 		j = 0;
 		while (colors[i][j])
 			if (!ft_isdigit(colors[i][j]))
+			{
+				//printf("color[%i]:%s\n", i, colors[i]);
+				//printf("fuck digit\n");
 				return (false);
+			}
 			else
 				j++;
+		//printf("color[%i]:%s\n", i, colors[i]);
 		i++;
 	}
+	//printf("fuck is_num\n");
 	return (true);
 }
 
