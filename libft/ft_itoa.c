@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 17:59:39 by acanelas          #+#    #+#             */
-/*   Updated: 2023/01/12 01:49:10 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:22:39 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ static int	neg_num(char *str, int n, int len)
 		str[0] = '-';
 		if (n == (-2147483648))
 		{
-		len--;
+			len--;
 			while (len > 0)
 			{
-			str[len] = (n % 10 * (-1)) + 48;
-			n = n / 10;
-			len--;
+				str[len] = (n % 10 * (-1)) + 48;
+				n = n / 10;
+				len--;
 			}
 			return (0);
 		}
 		else
-		n = n * (-1);
+			n = n * (-1);
 	}
 	return (n);
 }

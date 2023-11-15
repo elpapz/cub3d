@@ -6,11 +6,11 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 05:53:18 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/09 22:34:40 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:58:37 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cub3d.h"
+#include "../cub3d.h"
 
 void	map_pos(t_game *game)
 {
@@ -18,26 +18,30 @@ void	map_pos(t_game *game)
 	game->player.map_y = floor(game->player.player_pos_y);
 }
 
-void	get_step_sideD(t_game *game)
+void	get_step_sided(t_game *game)
 {
 	if (game->player.ray_dir_x < 0)
 	{
-		game->player.side_dist_x = (game->player.player_pos_x - game->player.map_x) * (game->player.d_dist_x);
+		game->player.side_dist_x = (game->player.player_pos_x
+				- game->player.map_x) * (game->player.d_dist_x);
 		game->player.step_x = -1;
 	}
 	else
 	{
-		game->player.side_dist_x = (game->player.map_x + 1.0 - game->player.player_pos_x) * (game->player.d_dist_x);
+		game->player.side_dist_x = (game->player.map_x
+				+ 1.0 - game->player.player_pos_x) * (game->player.d_dist_x);
 		game->player.step_x = 1;
 	}
 	if (game->player.ray_dir_y < 0)
 	{
-		game->player.side_dist_y = (game->player.player_pos_y - game->player.map_y) * (game->player.d_dist_y);
+		game->player.side_dist_y = (game->player.player_pos_y
+				- game->player.map_y) * (game->player.d_dist_y);
 		game->player.step_y = -1;
 	}
 	else
 	{
-		game->player.side_dist_y = (game->player.map_y + 1.0 - game->player.player_pos_y) * (game->player.d_dist_y);
+		game->player.side_dist_y = (game->player.map_y
+				+ 1.0 - game->player.player_pos_y) * (game->player.d_dist_y);
 		game->player.step_y = 1;
 	}
 	//printf("map_x %i\n", game->player.map_x);

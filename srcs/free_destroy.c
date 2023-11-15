@@ -6,11 +6,11 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 03:24:46 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/11 06:44:54 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/15 03:27:30 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cub3d.h"
+#include "../cub3d.h"
 
 void	free_array(char **split)
 {

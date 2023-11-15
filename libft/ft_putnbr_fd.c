@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 23:15:44 by acanelas          #+#    #+#             */
-/*   Updated: 2022/11/07 00:15:06 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:19:40 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 
 void	ft_putnbr_fd(int nb, int fd)
-{	
+{
 	if (nb == -2147483648)
 	{
 		ft_putchar_fd('-', fd);
@@ -33,7 +33,7 @@ void	ft_putnbr_fd(int nb, int fd)
 	{
 		ft_putnbr_fd(nb / 10, fd);
 		ft_putnbr_fd(nb % 10, fd);
-	}	
+	}
 	else
 		ft_putchar_fd(nb + 48, fd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 20:40:44 by acanelas          #+#    #+#             */
-/*   Updated: 2022/11/13 20:57:03 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:21:26 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 */
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
-{	
+{
 	t_list	*temp;
 
 	if (!lst || !del)

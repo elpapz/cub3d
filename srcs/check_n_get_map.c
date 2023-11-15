@@ -6,11 +6,11 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:48:37 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/14 03:26:11 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/15 03:19:10 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cub3d.h"
+#include "../cub3d.h"
 
 /*
 void	print_array(char **str)
@@ -24,7 +24,7 @@ void	player_start_coord(t_game *game, char **map)
 {
 	int	x;
 	int	y;
-	
+
 	y = -1;
 	while (map[++y])
 	{
@@ -49,8 +49,8 @@ void	player_start_coord(t_game *game, char **map)
 
 void	check_inner_map(t_game *game, char **map)
 {
-	int	i;
-	char **temp;
+	int		i;
+	char	**temp;
 
 	i = 0;
 	while (map[i])
@@ -63,7 +63,8 @@ void	check_inner_map(t_game *game, char **map)
 	player_start_coord(game, temp);
 	//printf("is_valid flood %i\n", game->is_valid);
 	//printf("x coord= %d\n y coord= %d\n", game->start_coord_x, game->start_coord_y);
-	flood_fill(game, game->player.player_pos_x, game->player.player_pos_y, temp);
+	//flood_fill(game, game->player.player_pos_x, game->player.player_pos_y, temp);
+	check_holes_in_wall(game, temp);
 	free_array(temp);
 	//print_array(temp);
 }
@@ -75,8 +76,9 @@ void	get_map(t_game *game, int fd)
 	temp = NULL;
 	while (game->line != NULL)
 	{
+		line_empty(game, game->line);
 		//printf("is_valid get_map %i\n", game->is_valid);
-		if (!forbiden_or_empty(game->line) && !game->is_valid)
+		if (!forbiden(game->line) && !game->is_valid)
 			game->is_valid = 4;
 		if (!temp)
 			temp = ft_strdup(game->line);
@@ -95,11 +97,12 @@ void	get_map(t_game *game, int fd)
 		game->is_valid = 6;
 	//printf("is_valid get_map %i\n", game->is_valid);
 	check_inner_map(game, game->map);
+	//check_holes_in_wall(game, )
 }
 
 void	first_parse_check(t_game *game, bool map)
 {
-	printf("is_valid first parse: %i\n", game->is_valid);
+	//printf("is_valid first parse: %i\n", game->is_valid);
 	if (map == false)
 		exit_game(game, "There's no actual map in your file\n");
 	if (!game->is_valid && (game->ceiling == -1 || game->floor == -1))
@@ -110,7 +113,7 @@ void	first_parse_check(t_game *game, bool map)
 
 bool	get_color_n_textures(t_game *game, char *file)
 {
-	int fd;
+	int		fd;
 	bool	map;
 
 	map = false;

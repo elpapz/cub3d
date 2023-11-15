@@ -6,11 +6,11 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:36:23 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/14 03:28:15 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/15 04:10:45 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cub3d.h"
+#include "../cub3d.h"
 
 void	flood_fill(t_game *game, int x, int y, char **str)
 {
@@ -18,7 +18,6 @@ void	flood_fill(t_game *game, int x, int y, char **str)
 	{
 		//free_array (str);
 		game->is_valid = 7;
-		//exit_game(game, "The inside of map is not closed\n");
 	}
 	//printf("is_valid get_map %i\n", game->is_valid);
 	if (str[y][x] == '1' || game->is_valid)
@@ -28,6 +27,25 @@ void	flood_fill(t_game *game, int x, int y, char **str)
 	flood_fill(game, x - 1, y, str);
 	flood_fill(game, x, y + 1, str);
 	flood_fill(game, x, y - 1, str);
+}
+
+bool	check_lateral_walls(char *str)
+{
+	char *temp;
+	temp = ft_strtrim(str, " \t");
+	if (temp[0] != ' ' && temp[0] != '\t' && temp[0] != '1')
+	{
+		free (temp);
+		return (false);
+	}
+	else if (temp[ft_strlen(temp) - 1] != ' ' && temp[ft_strlen(temp) - 1]
+		!= '\t' && temp[ft_strlen(temp) - 1] != '1')
+	{
+		free(temp);
+		return (false);
+	}
+	free (temp);
+	return (true);
 }
 
 bool	is_out_wall_closed(char **map)
@@ -43,20 +61,56 @@ bool	is_out_wall_closed(char **map)
 	//printf("%d\n", last);
 	temp = malloc(sizeof(char *) * (last + 1));
 	while (map[++i])
-		temp[i] = ft_strtrim(map[i], " \t\n\v\f\r");
+		temp[i] = ft_strdup(map[i]);
 	//printf("i = %d\n", i);
 	temp[i] = NULL;
+	//print_array(temp);
 	//printf("temp[last -1] = %s\n", temp[last]);
-	if (!check_first_last_wall(temp[0]) || !check_first_last_wall(temp[last - 1]))
+	if (!check_first_last_wall(temp[0])
+		|| !check_first_last_wall(temp[last - 1]))
 		last = -1;
 	i = -1;
 	while (temp[++i] && last >= 0)
-		if (temp[i][0] != '1' || temp[i][ft_strlen(temp[i]) - 1] != '1')
+		if (!check_lateral_walls(temp[i]))
 			last = -1;
 	free_array(temp);
 	if (last >= 0)
 		return (true);
 	return (false);
+}
+
+
+void	check_holes(t_game *game, char **map, int y, int x)
+{
+	if (map[y][x + 1] == ' ' || map[y][x + 1] == '\t'
+		|| map[y][x + 1] == '\n' || !map[y][x + 1])
+		game->is_valid = 7;
+	else if (map[y][x - 1] == ' ' || map[y][x - 1] == '\t'
+		|| map[y][x - 1] == '\n' || !map[y][x - 1])
+		game->is_valid = 7;
+	else if (map[y + 1][x] == ' ' || map[y + 1][x] == '\t'
+		|| map[y + 1][x] == '\n' || !map[y + 1][x])
+		game->is_valid = 7;
+	else if (map[y - 1][x] == ' ' || map[y - 1][x] == '\t'
+		|| map[y - 1][x] == '\n' || !map[y - 1][x])
+		game->is_valid = 7;
+
+}
+void	check_holes_in_wall(t_game *game, char **map)
+{
+	int x;
+	int y = 0;
+	while (map[y] && !game->is_valid)
+	{
+		x = 0;
+		while (map[y][x] && !game->is_valid)
+		{
+			if (map[y][x] == '0')
+				check_holes(game, map, y, x);
+			x++;
+		}
+	y++;
+	}
 }
 
 bool	check_first_last_wall(char *str)
@@ -65,7 +119,7 @@ bool	check_first_last_wall(char *str)
 
 	i = -1;
 	while (str[++i])
-		if (str[i] != '1')
+		if (str[i] != '1' && str[i] != ' ' && str[i != '\t'])
 			return (false);
 	return (true);
 }
@@ -74,7 +128,7 @@ int	check_num_players(char **map)
 {
 	int	i;
 	int	count_players;
-	int j;
+	int	j;
 
 	i = -1;
 	count_players = 0;
@@ -83,11 +137,8 @@ int	check_num_players(char **map)
 		j = -1;
 		while (map[i][++j])
 			if (map[i][j] == 'N' || map[i][j] == 'S'
-			|| map[i][j] == 'W' || map[i][j] == 'E')
-				{
-					count_players += 1;
-				}
+				|| map[i][j] == 'W' || map[i][j] == 'E')
+				count_players += 1;
 	}
 	return (count_players);
 }
-

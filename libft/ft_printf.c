@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 22:42:16 by acanelas          #+#    #+#             */
-/*   Updated: 2022/12/18 05:32:00 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:22:06 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_printf(const char *str, ...)
 		}
 		else
 			total_len += ft_putchar_ret_len(str[i]);
-	i++;
+		i++;
 	}
 	va_end(args);
 	return (total_len);

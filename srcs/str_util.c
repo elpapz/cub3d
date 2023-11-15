@@ -6,34 +6,25 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:22:00 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/14 04:17:20 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/15 00:20:08 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cub3d.h"
+#include "../cub3d.h"
 
 bool	is_valid_file(char *line)
 {
 	int	i;
+	int	fd;
 
 	i = ft_strlen(line);
 	if (!ft_strnstr(line, ".xpm", i))
-	{
-		//printf("fuck");
-		//free (line);
-		//exit_game(game, "it should be a file ending with .xpm\n");
 		return (false);
-	}
-	int fd;
-
 	fd = open(line, O_RDONLY);
 	if (fd < 0)
 	{
-		//printf("fuck");
 		close (fd);
 		return (false);
-		//free (line);
-		//exit_game(game, "error opening XPM\n");
 	}
 	close(fd);
 	return (true);
@@ -49,33 +40,32 @@ bool	is_all_numbers(char **colors)
 	{
 		j = 0;
 		while (colors[i][j])
+		{
 			if (!ft_isdigit(colors[i][j]))
-			{
-				//printf("color[%i]:%s\n", i, colors[i]);
-				//printf("fuck digit\n");
 				return (false);
-			}
-			else
-				j++;
-		//printf("color[%i]:%s\n", i, colors[i]);
+			j++;
+		}
 		i++;
 	}
-	//printf("fuck is_num\n");
 	return (true);
 }
 
-bool	line_empty(char *line)
+void	line_empty(t_game *game, char *line)
 {
-	int	i;
+	int		i;
 	bool	is_empty;
 
 	i = -1;
 	is_empty = true;
-	while (line[++i] && is_empty == true)
-		if (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
-			i++;
-		else
+	while (line[++i] && !game->is_valid && is_empty)
+	{
+		if (line[i] != ' ' && line[i] != '\n' && line[i] != '\t')
+		{
 			is_empty = false;
-
-	return (true);
+			if (game->line_empty)
+				game->is_valid = 9;
+		}
+	}
+	if (line[i] == '\0')
+		game->line_empty = true;
 }

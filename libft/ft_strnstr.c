@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 09:08:45 by acanelas          #+#    #+#             */
-/*   Updated: 2023/02/03 23:32:09 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 21:39:57 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	{
 		while (needle[a] == haystack[a + b]
 			&& haystack[a + b] && needle[a])
-		a++;
+			a++;
 		if (needle[a] == '\0')
 		{
 			return ((char *)haystack + b);

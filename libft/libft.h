@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:59:40 by acanelas          #+#    #+#             */
-/*   Updated: 2023/02/13 04:00:08 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:20:09 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int			ft_puthex(unsigned int n, const char type);
 int			ft_putchar_ret_len(char i);
 int			ft_putadress(unsigned long long n);
 int			ft_printf(const char *str, ...);
-char			**ft_split(char const *s, char c);
+char		**ft_split(char const *s, char c);
 
 # define BUFFER_SIZE 20
 

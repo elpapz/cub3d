@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/14 04:15:47 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/15 03:15:15 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_game
 	char		*line;
 	int			pixel;
 	int			color;
+	bool		line_empty;
 	t_animation	map_img;
 	t_animation	noth_img;
 	t_animation	south_img;
@@ -113,13 +114,13 @@ int		exit_game(t_game *game, char *msg);
 void	free_array(char **split);
 bool	is_valid_file(char *line);
 bool	is_all_numbers(char **colors);
-bool	line_empty(char *line);
+void	line_empty(t_game *game, char *line);
 int		exit_error(t_game *game, char *error_text);
 void	get_texture(t_game *game, char *line, char c);
 bool	split_colors(char **colors, char *line, size_t i);
 bool	convert_rgb(t_game *game, char **colors, char c);
 void	get_rgb(t_game *game, char *line, char c);
-bool	forbiden_or_empty(char *line);
+bool	forbiden(char *line);
 void	flood_fill(t_game *game, int x, int y, char **str);
 bool	is_out_wall_closed(char **map);
 bool	check_first_last_wall(char *str);
@@ -136,7 +137,7 @@ void	init_graphics(t_game *game);
 int		render_backgroung(t_game *game);
 void	apply_dda(t_game *game);
 void	get_the_ray(t_game *game);
-void	get_step_sideD(t_game *game);
+void	get_step_sided(t_game *game);
 void	map_pos(t_game *game);
 void	get_wall_height(t_player_view *player);
 void	get_player_direction(t_game *game, char c);
@@ -151,4 +152,6 @@ void	rotate_left(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	destroy_img(t_game *game);
 void	print_array(char **map);
+void	check_holes_in_wall(t_game *game, char **map);
+void	check_holes(t_game *game, char **map, int y, int x);
 #endif

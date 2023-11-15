@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:07:00 by acanelas          #+#    #+#             */
-/*   Updated: 2022/11/10 20:24:16 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:20:52 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	word_index(const char *s, char c)
 		}
 		else if (*s == c)
 			count = 0;
-	s++;
+		s++;
 	}
 	return (word);
 }
@@ -64,11 +64,11 @@ char	**ft_split(char const *s, char c)
 	while (b < word)
 	{
 		while (s[a] == c)
-		a++;
+			a++;
 		str[b] = ft_substr(s, a, (letter_index(s, c, a)));
 		if (!str)
 			return (NULL);
-	a += letter_index(s, c, a);
+		a += letter_index(s, c, a);
 		b++;
 	}
 	str [b] = 0;

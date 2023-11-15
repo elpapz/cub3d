@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 01:22:07 by acanelas          #+#    #+#             */
-/*   Updated: 2023/02/13 05:48:09 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:18:50 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static	char	*read_all(char *main_buff, int fd)
 
 	bytes = 1;
 	if (main_buff == NULL)
-			main_buff = ft_calloc(1, sizeof(char));
-		buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		main_buff = ft_calloc(1, sizeof(char));
+	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buff)
 		return (NULL);
 	while (bytes > 0)

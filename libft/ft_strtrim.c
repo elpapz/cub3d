@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 00:45:48 by acanelas          #+#    #+#             */
-/*   Updated: 2023/02/13 03:32:55 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:18:27 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	find_char(const char *str, char c)
 		{
 			return (1);
 		}
-			a++;
+		a++;
 	}
 	return (0);
 }
