@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_n_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:31:34 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/15 03:29:53 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:49:21 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,6 @@ void	get_texture(t_game *game, char *line, char c)
 		game->is_valid = 1;
 }
 
-void	print_array(char **map)
-{
-	auto int i = 0;
-	while (map[i])
-	{
-		printf("%s", map[i]);
-		i++;
-	}
-}
-
 bool	split_colors(char **colors, char *line, size_t i)
 {
 	int	start;
@@ -67,10 +57,7 @@ bool	split_colors(char **colors, char *line, size_t i)
 	}
 	colors[word_count] = NULL;
 	if (word_count != 3)
-	{
-		printf("fuck split\n");
 		return (false);
-	}
 	return (true);
 }
 
@@ -136,9 +123,6 @@ bool	forbiden(char *line)
 		i++;
 	}
 	if (is_valid_char == false)
-	{
-		printf("forbiden\n");
 		return (false);
-	}
 	return (true);
 }

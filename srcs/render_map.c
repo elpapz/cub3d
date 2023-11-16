@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 05:36:51 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/15 06:32:17 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/16 01:02:23 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,51 +68,6 @@ double	get_wall_side(t_player_view *player)
 	return (wall);
 }
 
-int	final_x_text(t_player_view *player)
-{
-	int	texture;
-
-	if (!player->wall_side && player->ray_dir_y < 0)
-		texture = player->t_x - TILE_SIZE - 1;
-	if (player->wall_side && player->ray_dir_x > 0)
-		texture = player->t_x - TILE_SIZE - 1;
-	else
-		texture = player->t_x;
-	return (texture);
-}
-
-void	get_x_text(t_player_view *player)
-{
-	double	wall;
-
-	wall = get_wall_side(player);
-	player->t_x = (int)(wall * (double)(TILE_SIZE));
-	if (!player->wall_side && player->ray_dir_x < 0)
-		player->t_x = TILE_SIZE - player->t_x;
-	else if (player->wall_side && player->ray_dir_y > 0)
-		player->t_x = TILE_SIZE - player->t_x;
-	//player->t_x = final_x_text(player);
-}
-
-void	save_sprite(t_game *game)
-{
-	if (!game->player.wall_side)
-	{
-		if (game->player.player_pos_x < game->player.map_x)
-			game->sprite_img = game->east_img;
-		else
-			game->sprite_img = game->west_img;
-	}
-	else
-	{
-		if (game->player.player_pos_y > game->player.map_y)
-			game->sprite_img = game->noth_img;
-		else
-			game->sprite_img = game->south_img;
-	}
-	get_x_text(&game->player);
-}
-
 int	game_loop(t_game *game)
 {
 	create_map_image(game);
@@ -126,7 +81,6 @@ int	game_loop(t_game *game)
 		get_wall_height(&game->player);
 		save_sprite(game);
 		draw_column(game);
-		//printf("pixel %i\n", game->pixel);
 		game->pixel++;
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_window,

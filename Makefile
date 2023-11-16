@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+         #
+#    By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 03:18:07 by acanelas          #+#    #+#              #
-#    Updated: 2023/11/13 21:00:02 by acanelas         ###   ########.fr        #
+#    Updated: 2023/11/15 23:02:39 by acanelas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS =	srcs/check_input.c \
 		srcs/move_player.c \
 		srcs/rotate_player.c \
 		srcs/free_destroy.c \
+		srcs/get_tex.c \
 		srcs/main.c \
 
 NAME = cub3d

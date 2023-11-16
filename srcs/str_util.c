@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:22:00 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/15 00:20:08 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/16 01:09:20 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,19 @@ void	line_empty(t_game *game, char *line)
 	}
 	if (line[i] == '\0')
 		game->line_empty = true;
+}
+
+void	flood_fill(t_game *game, int x, int y, char **str)
+{
+	if (str[y][x] == ' ' || (str[y][x] >= 9 && str[y][x] <= 13))
+	{
+		game->is_valid = 7;
+	}
+	if (str[y][x] == '1' || game->is_valid)
+		return ;
+	str[y][x] = '1';
+	flood_fill(game, x + 1, y, str);
+	flood_fill(game, x - 1, y, str);
+	flood_fill(game, x, y + 1, str);
+	flood_fill(game, x, y - 1, str);
 }

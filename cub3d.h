@@ -3,44 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/15 03:15:15 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/16 01:15:03 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
 # include "./libft/libft.h"
 # include "./minilibx/mlx.h"
 # include <stdbool.h>
 # include <math.h>
 
-#define A 97
-#define S 115
-#define D 100
-#define W 119
+# define A 97
+# define S 115
+# define D 100
+# define W 119
 
-#define ESC 65307
-#define RIGHT 65363
-#define LEFT 65361
+# define ESC 65307
+# define RIGHT 65363
+# define LEFT 65361
 
 # define NORTH_IMG "./sprites/north_wall.xpm"
 # define SOUTH_IMG "./sprites/south_wall.xpm"
 # define EAST_IMG "./sprites/east_wall.xpm"
 # define WEST_IMG "./sprites/west_wall.xpm"
 
-#define W_HEIGHT 266
-#define W_WIDTH 426
-#define TILE_SIZE 64
-#define PLANE 0.66
+# define W_HEIGHT 550
+# define W_WIDTH 1000
+# define TILE_SIZE 64
+# define PLANE 0.66
 
-#define PI 3.14159265358979323846
+# define PI 3.14159265358979323846
 
-#define MOV 0.2
-#define ROT 0.1
+# define MOV 0.2
+# define ROT 0.05
 
 typedef struct s_animation
 {
@@ -50,7 +50,6 @@ typedef struct s_animation
 	int		bpp;
 	char	*addr;
 }			t_animation;
-
 
 typedef struct s_player_view
 {
@@ -83,29 +82,29 @@ typedef struct s_player_view
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*mlx_window;
-	char		**map;
-	int		is_valid;
-	int			floor;
-	int			ceiling;
-	int			wall;
-	char		*north;
-	char		*south;
-	char		*east;
-	char		*west;
-	char		*line;
-	int			pixel;
-	int			color;
-	bool		line_empty;
-	t_animation	map_img;
-	t_animation	noth_img;
-	t_animation	south_img;
-	t_animation	east_img;
-	t_animation	west_img;
-	t_animation	sprite_img;
+	void			*mlx;
+	void			*mlx_window;
+	char			**map;
+	int				is_valid;
+	int				floor;
+	int				ceiling;
+	int				wall;
+	char			*north;
+	char			*south;
+	char			*east;
+	char			*west;
+	char			*line;
+	int				pixel;
+	int				color;
+	bool			line_empty;
+	t_animation		map_img;
+	t_animation		noth_img;
+	t_animation		south_img;
+	t_animation		east_img;
+	t_animation		west_img;
+	t_animation		sprite_img;
 	t_player_view	player;
-}			t_game;
+}					t_game;
 
 void	check_input(int ac, char **av);
 void	inicialize(t_game *game);
@@ -154,4 +153,10 @@ void	destroy_img(t_game *game);
 void	print_array(char **map);
 void	check_holes_in_wall(t_game *game, char **map);
 void	check_holes(t_game *game, char **map, int y, int x);
+double	tex_step_y(t_game *game);
+double	tex_pos(t_game *game, double y);
+void	save_sprite(t_game *game);
+void	get_x_text(t_player_view *player);
+int		final_x_text(t_player_view *player);
+double	get_wall_side(t_player_view *player);
 #endif

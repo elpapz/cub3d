@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_n_textures2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:39:04 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/15 03:20:51 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/16 01:08:44 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ bool	check_line(t_game *game)
 
 bool	overall_parse_check(t_game *game)
 {
-	//printf("is_valid overall %i\n", game->is_valid);
 	if (game->is_valid == 8)
 		exit_game(game, "Map data is in the wrong order or missing\n");
 	else if (game->is_valid == 1)
@@ -72,4 +71,23 @@ bool	overall_parse_check(t_game *game)
 	else if (game->is_valid == 9)
 		exit_game(game, "Map elements cannot be separated by empty lines\n");
 	return (0);
+}
+
+int	check_num_players(char **map)
+{
+	int	i;
+	int	count_players;
+	int	j;
+
+	i = -1;
+	count_players = 0;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+			if (map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'W' || map[i][j] == 'E')
+				count_players += 1;
+	}
+	return (count_players);
 }

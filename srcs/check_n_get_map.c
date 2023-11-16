@@ -3,23 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   check_n_get_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:48:37 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/15 03:19:10 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/16 01:11:42 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-/*
-void	print_array(char **str)
-{
-	int i = -1;
-	while (str[++i])
-		ft_putendl_fd(str[i], STDOUT_FILENO);
-}
-*/
 void	player_start_coord(t_game *game, char **map)
 {
 	int	x;
@@ -42,9 +34,6 @@ void	player_start_coord(t_game *game, char **map)
 			}
 		}
 	}
-	//printf("player_dir = %c\n", game->play_start_dir);
-	//printf("player_dir = %f\n", game->start_coord_y);
-	//printf("player_dir = %f\n", game->start_coord_x);
 }
 
 void	check_inner_map(t_game *game, char **map)
@@ -61,12 +50,8 @@ void	check_inner_map(t_game *game, char **map)
 		temp[i] = ft_strdup(map[i]);
 	temp[i] = NULL;
 	player_start_coord(game, temp);
-	//printf("is_valid flood %i\n", game->is_valid);
-	//printf("x coord= %d\n y coord= %d\n", game->start_coord_x, game->start_coord_y);
-	//flood_fill(game, game->player.player_pos_x, game->player.player_pos_y, temp);
 	check_holes_in_wall(game, temp);
 	free_array(temp);
-	//print_array(temp);
 }
 
 void	get_map(t_game *game, int fd)
@@ -77,7 +62,6 @@ void	get_map(t_game *game, int fd)
 	while (game->line != NULL)
 	{
 		line_empty(game, game->line);
-		//printf("is_valid get_map %i\n", game->is_valid);
 		if (!forbiden(game->line) && !game->is_valid)
 			game->is_valid = 4;
 		if (!temp)
@@ -89,20 +73,15 @@ void	get_map(t_game *game, int fd)
 	}
 	game->map = ft_split(temp, '\n');
 	free (temp);
-	//printf("is_valid get_map %i\n", game->is_valid);
 	if (!is_out_wall_closed(game->map) && !game->is_valid)
 		game->is_valid = 5;
-	//printf("is_valid get_map %i\n", game->is_valid);
 	if (check_num_players(game->map) != 1 && !game->is_valid)
 		game->is_valid = 6;
-	//printf("is_valid get_map %i\n", game->is_valid);
 	check_inner_map(game, game->map);
-	//check_holes_in_wall(game, )
 }
 
 void	first_parse_check(t_game *game, bool map)
 {
-	//printf("is_valid first parse: %i\n", game->is_valid);
 	if (map == false)
 		exit_game(game, "There's no actual map in your file\n");
 	if (!game->is_valid && (game->ceiling == -1 || game->floor == -1))
@@ -133,7 +112,6 @@ bool	get_color_n_textures(t_game *game, char *file)
 	first_parse_check(game, map);
 	get_map(game, fd);
 	overall_parse_check(game);
-	//get_map(game, fd);
 	close (fd);
 	return (true);
 }
