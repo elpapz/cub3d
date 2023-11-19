@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_n_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:31:34 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/15 22:49:21 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/19 00:30:17 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ bool	split_colors(char **colors, char *line, size_t i)
 {
 	int	start;
 	int	word_count;
+	int	commas_count = 0;
 
 	word_count = 0;
 	while (i < ft_strlen(line))
@@ -50,14 +51,29 @@ bool	split_colors(char **colors, char *line, size_t i)
 		while (line[i] != ',' && line[i] != '\0')
 			i++;
 		if (line[i] == ',' || line[i] == '\0')
+		{
+			if (line[i] == ',')
+				commas_count++;
+			if (commas_count == 3)
+				break ;
+			//if (word_count >= 3 && line[i] == '\0')
+			//{
+				//word_count++;
+				//break ;
+			//}
 			colors[word_count++] = ft_substr(line, start, i - start);
-		if (line[i] == '\0' || word_count > 3)
-			break ;
+		}
+		//if (line[i] == '\0' || word_count > 3)
+			//break ;
 		i++;
 	}
 	colors[word_count] = NULL;
 	if (word_count != 3)
+	{
+		printf("caralho\n");
 		return (false);
+	}
+
 	return (true);
 }
 
@@ -94,7 +110,7 @@ void	get_rgb(t_game *game, char *line, char c)
 
 	i = 1;
 	colors = malloc(sizeof(char *) * (3 + 1));
-	colors[3] = NULL;
+	//colors[3] = NULL;
 	while (line[i] == ' ' || (line [i] >= 9 && line[i] <= 13))
 		i++;
 	if (!split_colors(colors, line, i) || !is_all_numbers(colors)

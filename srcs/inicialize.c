@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 05:45:27 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/14 23:35:20 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:25:35 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	get_player_direction2(t_game *game, char c)
 		game->player.dir_x = -1;
 		game->player.dir_y = 0;
 		game->player.plane_x = 0;
-		game->player.plane_y = PLANE;
+		game->player.plane_y = -PLANE;
 		return ;
 	}
 }
