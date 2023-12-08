@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 01:54:43 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/16 01:15:03 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/12/08 21:56:51 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,4 +159,5 @@ void	save_sprite(t_game *game);
 void	get_x_text(t_player_view *player);
 int		final_x_text(t_player_view *player);
 double	get_wall_side(t_player_view *player);
+void	init_count_values(int *word1, int *word2);
 #endif

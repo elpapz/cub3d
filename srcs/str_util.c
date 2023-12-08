@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:22:00 by acanelas          #+#    #+#             */
-/*   Updated: 2023/12/08 18:50:33 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/12/08 21:56:24 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,10 @@ void	flood_fill(t_game *game, int x, int y, char **str)
 	flood_fill(game, x - 1, y, str);
 	flood_fill(game, x, y + 1, str);
 	flood_fill(game, x, y - 1, str);
+}
+
+void	init_count_values(int *word1, int *word2)
+{
+	*word1 = 0;
+	*word2 = 0;
 }
