@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 03:11:21 by acanelas          #+#    #+#             */
-/*   Updated: 2023/12/08 19:35:30 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/12/08 21:31:41 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_img(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free (game->mlx);
 		free_n_exit(game);
-		ft_putendl_fd("convert xmp to img just failed\n", STDOUT_FILENO);
+		ft_putendl_fd("convert xmp to img just failed", STDOUT_FILENO);
 		exit(0);
 	}
 }
@@ -43,19 +43,39 @@ void	init_addr(t_game *game)
 			&game->south_img.endian);
 }
 
+void	check_size_xpm(int tile_x, int tile_y, t_game *game)
+{
+	if (tile_x != TILE_SIZE || tile_y != TILE_SIZE)
+	{
+		destroy_img(game);
+		mlx_destroy_window(game->mlx, game->mlx_window);
+		mlx_destroy_display(game->mlx);
+		free (game->mlx);
+		free_n_exit(game);
+		ft_putendl_fd("Invalid xpm size", STDOUT_FILENO);
+		exit(0);
+	}
+}
+
 void	init_xpm_img(t_game *game)
 {
-	int	tile_size;
+	int	tile_size_x;
+	int	tile_size_y;
 
-	tile_size = TILE_SIZE;
+	tile_size_x = 0;
+	tile_size_y = 0;
 	game->noth_img.img = mlx_xpm_file_to_image
-		(game->mlx, game->north, &tile_size, &tile_size);
+		(game->mlx, game->north, &tile_size_x, &tile_size_y);
+	check_size_xpm(tile_size_x, tile_size_y, game);
 	game->south_img.img = mlx_xpm_file_to_image
-		(game->mlx, game->south, &tile_size, &tile_size);
+		(game->mlx, game->south, &tile_size_x, &tile_size_y);
+	check_size_xpm(tile_size_x, tile_size_y, game);
 	game->east_img.img = mlx_xpm_file_to_image
-		(game->mlx, game->east, &tile_size, &tile_size);
+		(game->mlx, game->east, &tile_size_x, &tile_size_y);
+	check_size_xpm(tile_size_x, tile_size_y, game);
 	game->west_img.img = mlx_xpm_file_to_image
-		(game->mlx, game->west, &tile_size, &tile_size);
+		(game->mlx, game->west, &tile_size_x, &tile_size_y);
+	check_size_xpm(tile_size_x, tile_size_y, game);
 	check_img(game);
 	init_addr(game);
 }

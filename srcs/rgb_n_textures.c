@@ -6,7 +6,7 @@
 /*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 06:31:34 by acanelas          #+#    #+#             */
-/*   Updated: 2023/12/08 19:03:22 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/12/08 21:37:11 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,20 @@ void	get_texture(t_game *game, char *line, char c)
 		game->is_valid = 1;
 }
 
+void	init_count_values(int *word1, int *word2)
+{
+	*word1 = 0;
+	*word2 = 0;
+}
+
 bool	split_colors(char **colors, char *line, size_t i)
 {
 	int	start;
 	int	word_count;
+	int	commas_count;
 
-	word_count = 0;
-	while (i < ft_strlen(line))
+	init_count_values(&word_count,&commas_count);
+	while (++i < ft_strlen(line))
 	{
 		start = i;
 		while (line[start] == ' ' || (line[start] >= 9 && line[start] <= 13))
@@ -50,10 +57,13 @@ bool	split_colors(char **colors, char *line, size_t i)
 		while (line[i] != ',' && line[i] != '\0')
 			i++;
 		if (line[i] == ',' || line[i] == '\0')
+		{
+			if (line[i] == ',')
+				commas_count++;
+			if (commas_count == 3)
+				break ;
 			colors[word_count++] = ft_substr(line, start, i - start);
-		if (line[i] == '\0' || word_count > 3)
-			break ;
-		i++;
+		}
 	}
 	colors[word_count] = NULL;
 	if (word_count != 3)
@@ -94,10 +104,9 @@ void	get_rgb(t_game *game, char *line, char c)
 
 	i = 1;
 	colors = malloc(sizeof(char *) * (3 + 1));
-	colors[3] = NULL;
 	while (line[i] == ' ' || (line [i] >= 9 && line[i] <= 13))
 		i++;
-	if (!split_colors(colors, line, i) || !is_all_numbers(colors)
+	if (!split_colors(colors, line, i - 1) || !is_all_numbers(colors)
 		|| !convert_rgb(game, colors, c))
 	{
 		free_array (colors);
