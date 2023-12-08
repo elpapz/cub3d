@@ -6,7 +6,11 @@
 /*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 03:11:21 by acanelas          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/12/08 21:31:41 by acanelas         ###   ########.fr       */
+=======
+/*   Updated: 2023/12/08 19:35:30 by acanelas         ###   ########.fr       */
+>>>>>>> 31723e3ad456320c47bdb1d76612299082134cf7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +26,11 @@ void	check_img(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free (game->mlx);
 		free_n_exit(game);
+<<<<<<< HEAD
 		ft_putendl_fd("convert xmp to img just failed", STDOUT_FILENO);
+=======
+		ft_putendl_fd("convert xmp to img just failed\n", STDOUT_FILENO);
+>>>>>>> 31723e3ad456320c47bdb1d76612299082134cf7
 		exit(0);
 	}
 }
@@ -65,6 +73,7 @@ void	init_xpm_img(t_game *game)
 	tile_size_x = 0;
 	tile_size_y = 0;
 	game->noth_img.img = mlx_xpm_file_to_image
+<<<<<<< HEAD
 		(game->mlx, game->north, &tile_size_x, &tile_size_y);
 	check_size_xpm(tile_size_x, tile_size_y, game);
 	game->south_img.img = mlx_xpm_file_to_image
@@ -76,6 +85,15 @@ void	init_xpm_img(t_game *game)
 	game->west_img.img = mlx_xpm_file_to_image
 		(game->mlx, game->west, &tile_size_x, &tile_size_y);
 	check_size_xpm(tile_size_x, tile_size_y, game);
+=======
+		(game->mlx, game->north, &tile_size, &tile_size);
+	game->south_img.img = mlx_xpm_file_to_image
+		(game->mlx, game->south, &tile_size, &tile_size);
+	game->east_img.img = mlx_xpm_file_to_image
+		(game->mlx, game->east, &tile_size, &tile_size);
+	game->west_img.img = mlx_xpm_file_to_image
+		(game->mlx, game->west, &tile_size, &tile_size);
+>>>>>>> 31723e3ad456320c47bdb1d76612299082134cf7
 	check_img(game);
 	init_addr(game);
 }
