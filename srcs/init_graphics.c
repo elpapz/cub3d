@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_graphics.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 03:11:21 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/14 19:53:39 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/12/08 19:35:30 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ void	check_img(t_game *game)
 		|| !game->west_img.img || !game->south_img.img)
 	{
 		destroy_img(game);
-		exit_game(game, "convert xmp to img just failed\n");
+		mlx_destroy_window(game->mlx, game->mlx_window);
+		mlx_destroy_display(game->mlx);
+		free (game->mlx);
+		free_n_exit(game);
+		ft_putendl_fd("convert xmp to img just failed\n", STDOUT_FILENO);
+		exit(0);
 	}
 }
 
@@ -44,13 +49,13 @@ void	init_xpm_img(t_game *game)
 
 	tile_size = TILE_SIZE;
 	game->noth_img.img = mlx_xpm_file_to_image
-		(game->mlx, NORTH_IMG, &tile_size, &tile_size);
+		(game->mlx, game->north, &tile_size, &tile_size);
 	game->south_img.img = mlx_xpm_file_to_image
-		(game->mlx, SOUTH_IMG, &tile_size, &tile_size);
+		(game->mlx, game->south, &tile_size, &tile_size);
 	game->east_img.img = mlx_xpm_file_to_image
-		(game->mlx, EAST_IMG, &tile_size, &tile_size);
+		(game->mlx, game->east, &tile_size, &tile_size);
 	game->west_img.img = mlx_xpm_file_to_image
-		(game->mlx, WEST_IMG, &tile_size, &tile_size);
+		(game->mlx, game->west, &tile_size, &tile_size);
 	check_img(game);
 	init_addr(game);
 }

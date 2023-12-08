@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acanelas <acanelas@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: acanelas <acanelas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 01:07:09 by acanelas          #+#    #+#             */
-/*   Updated: 2023/11/15 06:27:14 by acanelas         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:06:50 by acanelas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	rotate_left(t_game *game)
 
 	old_dir_x = game->player.dir_x;
 	game->player.dir_x = game->player.dir_x
-		* cos(-ROT) - game->player.dir_y * sin(-ROT);
+		* cos(ROT) - game->player.dir_y * sin(-ROT);
 	game->player.dir_y = old_dir_x
 		* sin(-ROT) + game->player.dir_y * cos(-ROT);
 	old_plane_x = game->player.plane_x;
